@@ -1,0 +1,38 @@
+{% extends "movies/base.html" %}
+
+{% block title %}
+电影
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-offset-1 col-xs-8 col-sm-8">
+            {% block context %}
+            {% endblock %}
+        </div>
+        <div class="col-xs-4 col-sm-2">
+            {% block movie_type %}
+            {% endblock %}
+            <br>
+            {% block producer_country %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+<style>
+.row {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+.row > [class*='col-'] {
+    display: flex;
+    flex-direction: column;
+}
+</style>
+{% endblock %}

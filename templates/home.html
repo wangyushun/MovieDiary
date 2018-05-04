@@ -1,0 +1,30 @@
+{% extends "movies/base.html" %}
+
+{% block title %}
+MovieDiary
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-offset-2 col-xs-12 col-sm-8">
+            <div class="jumbotron">
+                <h2 class="text-center">欢迎访问<span class="text-info"><em>电影日记</em></span></h2>
+                <br>
+                {% if movie_lines %}
+                    {% for mlines in movie_lines%}
+                        <p>{{ mlines.lines }}</p>  
+                        <p class="text-right">——《{{ mlines.provenance }}》</p>
+                    {% endfor%}
+                {% else %}
+                    <p>生活就像一盒巧克力，你永远不知道你会得到什么。——《阿甘正传》。</p>
+                    <p class="text-right">——《阿甘正传》</p>
+                {% endif %}
+                <br>
+                <p><a class="btn btn-primary btn-lg" href="{% url 'movie' %}" role="button">淘电影</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
