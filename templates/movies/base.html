@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <!-- Bootstrap -->
+    {# 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ #} 
+    {# Bootstrap #} 
     <link rel="stylesheet" href="{% static 'bootstrap-3.3.7/css/bootstrap.min.css' %}" >
     <title>{% block title %} {% endblock %}</title>
 </head>
@@ -34,17 +34,31 @@
                 </div>
                 <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search"></span></button>
             </form>
-            <ul class="nav navbar-nav navbar-right">
+            
+            <div class="nav navbar-nav navbar-right">
+                {# 用户已登录 #}
+                {% if user.is_authenticated %}
+                    <form class="navbar-form navbar-right" role="signout" action="{% url 'signout' %}" method="POST">
+                        <input type="text"  name="user" hidden="hidden" value="{{ user.pk }}">
+                        <button type="submit" class="btn">注销</button>
+                    </form>
+                    <p class="navbar-text navbar-right"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{ user }}</p>
+                {% else %}
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="{% url 'signin' %}">登录</a></li>
+                        <li><a href="{% url 'signup' %}">注册</a></li>
+                    </ul>
+                {% endif %}
                 <li><a href="{% url 'rss' %}">RSS 订阅</a></li>
-            </ul> 
+            </div>               
         </div>
       </div>
     </nav>
     {% block body %} {% endblock %}
 
-    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    {# jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) #} 
     <script type="text/javascript" src="{% static 'jquery-1.12.4/jquery.min.js' %}"></script>
-    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    {# 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件 #} 
     <script type="text/javascript" src="{% static 'bootstrap-3.3.7/js/bootstrap.min.js' %}"></script>
 </body>
 </html>

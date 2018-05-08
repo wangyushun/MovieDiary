@@ -8,9 +8,11 @@
     <div class="row" >
         {% for movie in movies %}
         <div class="col-xs-6 col-sm-3 col-md-3">
-            <div class="thumbnail ">
+            <div class="thumbnail">
                 {% if movie.poster %}
-                    <img src="{{ movie.poster.url }}" class="img-thumbnail"  alt="海报">
+                <a href="{% url 'movie_detail' movie.pk %}">
+                    <img src="{{ movie.poster.url }}"  alt="海报">
+                </a>
                 {% endif %}
                 <div class="caption">
                     <a href="{% url 'movie_detail' movie.pk %}">{{ movie.name }}</a>

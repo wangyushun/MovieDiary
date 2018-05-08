@@ -14,7 +14,7 @@ class AllMoviesRssFeed(Feed):
 
     # 需要显示的内容条目
     def items(self):
-        return Movie.objects.all()  #order_by('-create_datetime')[:5]
+        return Movie.objects.order_by('-create_datetime')[:5]
 
     # 聚合器中显示的内容条目的标题
     def item_title(self, item):
