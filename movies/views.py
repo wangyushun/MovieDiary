@@ -36,6 +36,9 @@ def get_movies_data(request, movies):
     return context
 
 def movie(request):  
+    '''
+    电影列表视图
+    '''
     movies = models.Movie.objects.all()
     context = get_movies_data(request, movies)
     context['movie_type'] = models.MovieType.objects.all()
@@ -44,6 +47,9 @@ def movie(request):
 
 
 def movie_detail(request, pk):
+    '''
+    电影详情视图
+    '''
     context = {}
     context['movie_type'] = models.MovieType.objects.all()
     context['country'] = models.Country.objects.all()
@@ -51,6 +57,9 @@ def movie_detail(request, pk):
     return render(request, 'movie_detail.html', context)
 
 def movie_type(request, pk):
+    '''
+    电影类型分类电影列表视图
+    '''
     movies = models.Movie.objects.filter(movie_type=pk).all()
     context = get_movies_data(request, movies)
     context['movie_type'] = models.MovieType.objects.all()
@@ -59,6 +68,9 @@ def movie_type(request, pk):
     return render(request, 'movies_list.html', context)
 
 def country(request, pk):
+    '''
+    电影制片国家或地区分类电影列表视图
+    '''
     movies = models.Movie.objects.filter(producer_country=pk).all()
     context = get_movies_data(request, movies)
     context['movie_type'] = models.MovieType.objects.all()
@@ -66,6 +78,9 @@ def country(request, pk):
     return render(request, 'movies_list.html', context)
 
 def search(request):
+    '''
+    搜索电影视图
+    '''
     search = request.POST.get('search', '')
     movies = models.Movie.objects.filter(name__icontains=search).all()
     context = get_movies_data(request, movies)

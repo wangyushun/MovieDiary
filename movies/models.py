@@ -3,6 +3,8 @@ from django.core import validators
 #from django.utils import timezone
 #from ckeditor.fields import RichTextField 
 from ckeditor_uploader.fields import RichTextUploadingField
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFill
 
 # Create your models here.
 class MovieType(models.Model):
@@ -35,6 +37,10 @@ class Country(models.Model):
 
 class Movie(models.Model):
     poster = models.ImageField(verbose_name='电影海报', upload_to='poster', default='', null=True)#海报
+    poster_thumbnail = ImageSpecField(source='poster',
+                                      processors=[ResizeToFill(200, 300)],
+                                      format='JPEG',
+                                      options={'quality': 60})
     name = models.CharField(verbose_name='电影名字', max_length=25)#电影名
     director = models.CharField(verbose_name='导演', max_length=25, default='')#导演
     actor = models.CharField(verbose_name='主演', max_length=25, default='')#演员

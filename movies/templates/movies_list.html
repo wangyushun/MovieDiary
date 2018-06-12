@@ -11,11 +11,12 @@
             <div class="thumbnail">
                 {% if movie.poster %}
                 <a href="{% url 'movie_detail' movie.pk %}">
-                    <img src="{{ movie.poster.url }}"  alt="海报">
+                    <!-- <img src="{{ movie.poster.url }}"  alt="海报"> -->
+                    <img src="{{ movie.poster_thumbnail.url }}"  alt="海报">
                 </a>
                 {% endif %}
                 <div class="caption">
-                    <a href="{% url 'movie_detail' movie.pk %}">{{ movie.name }}</a>
+                    <a href="{% url 'movie_detail' movie.pk %}"><p style="overflow:hidden; white-space:nowrap; text-overflow:ellipsis;">{{ movie.name }}</p></a>
                     <p><span class="glyphicon glyphicon-star" aria-hidden="true"></span> {{ movie.grade }}</p>    
                 </div>
             </div>           
@@ -64,6 +65,7 @@
 {% block movie_type %}
     <h2>类型：</h2>
     <div class="row" >
+        <p><span class="glyphicon glyphicon-tags" aria-hidden="true"></span><a href="{% url 'movie' %}">  全部</a></p>
         {% for type in movie_type %}
             <p><span class="glyphicon glyphicon-tags" aria-hidden="true"></span><a href="{% url 'movie_type' type.pk %}">  {{ type.name }}</a></p>
         {% endfor %}
@@ -73,6 +75,7 @@
 {% block producer_country %}
     <h2>地区：</h2>
     <div class="row" >
+        <p><span class="glyphicon glyphicon-tags" aria-hidden="true"></span><a href="{% url 'movie' %}">  全部</a></p>
         {% for cty in country %}
             <p><span class="glyphicon glyphicon-tags" aria-hidden="true"></span><a href="{% url 'country' cty.pk %}">  {{ cty.name }}</a></p>
         {% endfor %}
