@@ -135,6 +135,29 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 #ckeditor
 CKEDITOR_UPLOAD_PATH = "upload/"
+CKEDITOR_CONFIGS = {
+    'default': {
+
+    },
+
+    'comment_ckeditor': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink'],
+            ['TextColor', 'BGColor'],
+            ['Smiley', 'SpecialChar'],
+            ['RemoveFormat', 'Undo', 'Redo', 'SelectAll'],
+            
+        ], 
+        'width': 'auto',
+        'height': '150', 
+        'remove_plugins': 'elementspash',
+        'resize_enabled': 'False',
+        'tabSpaces': 4,
+    }
+}
 
 #自定义
 MOVIE_LIST_COUNT_PER_PAGE = 8

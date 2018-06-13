@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Error
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-offset-2 col-xs-12 col-sm-8">
+            <div class="jumbotron">
+                <p>{{ error_text|safe }}</p> 
+                {% if url_from %}
+                	<p><a class="btn btn-primary btn-lg" href="{{ url_from }}" role="button">返回</a></p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

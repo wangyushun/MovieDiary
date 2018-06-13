@@ -1,0 +1,21 @@
+
+.comment-item {
+	border-top: 1px solid #ddd;	
+	padding-top: 10px;
+}
+
+.row {
+	margin-bottom: 30px;
+}
+
+.comment-user {
+	font-weight: bold;
+	color: blue;
+}
+
+/*评论输入框*/
+.django-ckeditor-widget {
+	width: 100%;
+}
+
+

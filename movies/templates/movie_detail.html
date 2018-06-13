@@ -1,55 +1,90 @@
 {% extends "movie_base.html" %}
 
+{% load staticfiles %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/movie/movie_detail.css' %}">
+    <script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+    <script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+{% endblock %}
+
 {% block title %}
-{{ movie.name }}
+    {{ movie.name }}
 {% endblock %}
 
 {% block context %}  
-	<div class="row">
-		<div class="col-xs-12 col-sm-10 col-md-10">
-			<h2>{{ movie.name }}({{ movie.release_date | date:'Y' }})</h2>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-8 col-sm-3 col-md-3">
-			<img src="{{ movie.poster.url }}" class="img-thumbnail" alt="">
-		</div>
-		<div class="col-xs-12 col-sm-5 col-md-5">
-			<p>导演: {{ movie.director }}</p>
-			<p>主演: {{ movie.actor }}</p>
-			<p>类型: <a href="{% url 'movie_type' movie.movie_type.pk %}">{{ movie.movie_type }}</a></p>
-			<p>制片地区/国家: <a href="{% url 'country' movie.producer_country.pk %}">{{ movie.producer_country }}</a></p>
-			<p>语言: {{ movie.language }}</p>
-			<p>上映日期: {{ movie.release_date | date:'y-m-d' }}({{ movie.release_country }})</p>
-			<p>片长: {{ movie.time_length }}分钟</p>
-		</div>
-		<div class="col-xs-12 col-sm-4 col-md-4">
-			<p><span class="label label-default">豆瓣评分:</span>{{ movie.grade }}</p>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-12 col-sm-10 col-md-10">
-			<br>
-			<span class="bg-info"><p><h3>{{ movie.name }}剧情简介：</h3></p></span>
-			{{ movie.synopsis | safe }}
-		</div>
-	</div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-10 col-md-10">
+            <h3>{{ movie.name }}({{ movie.release_date | date:'Y' }})</h3>
+        </div>
+        <div class="col-sm-3 col-md-3">
+            <img src="{{ movie.poster_thumbnail.url }}" class="img-thumbnail" alt="">
+        </div>
+        <div class="col-xs-12 col-sm-5 col-md-5">
+            <p>导演: {{ movie.director }}</p>
+            <p>主演: {{ movie.actor }}</p>
+            <p>类型: <a href="{% url 'movie_type' movie.movie_type.pk %}">{{ movie.movie_type }}</a></p>
+            <p>制片地区/国家: <a href="{% url 'country' movie.producer_country.pk %}">{{ movie.producer_country }}</a></p>
+            <p>语言: {{ movie.language }}</p>
+            <p>上映日期: {{ movie.release_date | date:'y-m-d' }}({{ movie.release_country }})</p>
+            <p>片长: {{ movie.time_length }}分钟</p>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4">
+            <p><span class="label label-success">豆瓣评分:</span>{{ movie.grade }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-10 col-md-10">
+            <span class="bg-info"><strong>剧情简介</strong></span>
+            <p>{{ movie.synopsis | safe }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-10 col-md-10">
+            {% if user.is_authenticated %}
+                <strong>{{ user }}! 欢迎评论</strong>
+                <form method="POST" action="{% url 'post_comment' %}">  
+                    {% for field in comment_form %}
+                        {{ field }}
+                    {% endfor %}
+                    <br>
+                    <button type="submit" class="btn btn-primary pull-right">发表</button>
+                </form>
+            {% else %}
+                <strong>欢迎评论，请先<a href="{% url 'signin' %}">登录</a></strong>
+            {% endif %}
+        </div>
+    </div>
+    {# 评论区 #}
+    <div class="row">
+        <div class="col-xs-12 col-sm-10 col-md-10">
+            <strong>评论区</strong>
+            {% for comment in comments %}
+                <div class="comment-item">
+                    <span>
+                        <span class="comment-user">{{ comment.user }} </span>
+                        <span>{{ comment.create_time | date:'y-m-d h:m:s' }}</span>
+                    </span>                     
+                    <p>{{ comment.context | safe }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
 
 {% block movie_type %}
-	<h2>类型：</h2>
-	<div class="row" >
-		{% for type in movie_type %}
-		<p><span class="glyphicon glyphicon-tags" aria-hidden="true"></span><a href="{% url 'movie_type' type.pk %}">  {{ type.name }}</a></p>
-		{% endfor %}
-	</div>
+    <strong>类型：</strong>
+    <div class="row" >
+        {% for type in movie_type %}
+        <p><span class="glyphicon glyphicon-tags" aria-hidden="true"></span><a href="{% url 'movie_type' type.pk %}">  {{ type.name }}</a></p>
+        {% endfor %}
+    </div>
 {% endblock %}
 
 {% block producer_country %}
-	<h2>地区：</h2>
+    <strong>地区：</strong>
     <div class="row" >
-		{% for cty in country %}
-			<p><span class="glyphicon glyphicon-tags" aria-hidden="true"></span><a href="{% url 'country' cty.pk %}">  {{ cty.name }}</a></p>
-		{% endfor %}
-	</div>
+        {% for cty in country %}
+            <p><span class="glyphicon glyphicon-tags" aria-hidden="true"></span><a href="{% url 'country' cty.pk %}">  {{ cty.name }}</a></p>
+        {% endfor %}
+    </div>
 {% endblock %}

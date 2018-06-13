@@ -1,7 +1,10 @@
 from django.shortcuts import render, HttpResponse
 from django.core.paginator import Paginator
 from django.conf import settings
+from django.contrib.contenttypes.models import ContentType
 from . import models
+from comments.forms import CommentForm
+from comments.models import Comment
 
 
 # Create your views here.
@@ -54,6 +57,9 @@ def movie_detail(request, pk):
     context['movie_type'] = models.MovieType.objects.all()
     context['country'] = models.Country.objects.all()
     context['movie'] = models.Movie.objects.filter(pk=pk).first()
+    context['comment_form'] = CommentForm(initial={'content_type': 'movie', 'object_id': pk})
+    content_type = ContentType.objects.get_for_model(models.Movie)
+    context['comments'] = Comment.objects.filter(content_type=content_type, object_id=pk).all()
     return render(request, 'movie_detail.html', context)
 
 def movie_type(request, pk):
