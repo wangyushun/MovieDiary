@@ -63,7 +63,7 @@
 {% endblock %}
 
 {% block movie_type %}
-    <h2>类型：</h2>
+    <strong>类型：</strong>
     <div class="row" >
         <p><span class="glyphicon glyphicon-tags" aria-hidden="true"></span><a href="{% url 'movie' %}">  全部</a></p>
         {% for type in movie_type %}
@@ -73,7 +73,7 @@
 {% endblock %}
 
 {% block producer_country %}
-    <h2>地区：</h2>
+    <strong>地区：</strong>
     <div class="row" >
         <p><span class="glyphicon glyphicon-tags" aria-hidden="true"></span><a href="{% url 'movie' %}">  全部</a></p>
         {% for cty in country %}

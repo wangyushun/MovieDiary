@@ -31,6 +31,7 @@ urlpatterns = [
     path('movie/', include('movies.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('comment/', include('comments.urls')),
+    path('api/', include('restapi.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

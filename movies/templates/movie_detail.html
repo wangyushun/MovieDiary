@@ -72,7 +72,7 @@
 {% endblock %}
 
 {% block movie_type %}
-    <strong>类型：</strong>
+    
     <div class="row" >
         {% for type in movie_type %}
         <p><span class="glyphicon glyphicon-tags" aria-hidden="true"></span><a href="{% url 'movie_type' type.pk %}">  {{ type.name }}</a></p>
