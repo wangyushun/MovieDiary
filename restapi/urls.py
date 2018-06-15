@@ -12,7 +12,6 @@ router.register(r'movies', views.MovieViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    #path(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
 
 

@@ -25,7 +25,10 @@ SECRET_KEY = 'b*ywn5enft=bq7-3d8x*u9bpy**dex*)*=gfaad1nxx0vx85%u'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'wangyushun.pythonanywhere.com',
+    '127.0.0.1'
+    ]
 
 
 # Application definition
@@ -49,7 +52,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    #'django.middleware.csrf.CsrfViewMiddleware',#csrf安全验证
+    'django.middleware.csrf.CsrfViewMiddleware',#csrf安全验证
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
