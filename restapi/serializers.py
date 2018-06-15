@@ -64,7 +64,7 @@ class MovieDetailSerializer(serializers.HyperlinkedModelSerializer):
         model = models.Movie
         fields = ('url', 'id', 'poster_thumbnail', 'name', 'movie_type','director',
                 'actor', 'producer_country', 'language', 'release_date', 'release_country',
-                'time_length', 'grade', 'synopsis')
+                'time_length', 'grade', 'synopsis', 'resource')
 
 
 

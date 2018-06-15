@@ -10,7 +10,7 @@ admin.site.register(models.MovieType)
 
 class MovieAdmin(admin.ModelAdmin):
     list_display = ('id', 'admin_thumbnail', 'name', 'director', 'movie_type', 'producer_country',
-                    'language', 'create_datetime', 'grade')
+                    'language', 'create_datetime', 'grade', 'resource')
 
     admin_thumbnail = AdminThumbnail(image_field='poster_thumbnail')
 
@@ -19,5 +19,5 @@ class MovieLinesAdmin(admin.ModelAdmin):
     list_display = ('lines', 'provenance')
 
 admin.site.register(models.Movie, MovieAdmin)
-admin.register(models.MovieLines, MovieLinesAdmin)
+admin.site.register(models.MovieLines, MovieLinesAdmin)
 

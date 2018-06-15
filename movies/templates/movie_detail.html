@@ -40,9 +40,20 @@
     </div>
     <div class="row">
         <div class="col-xs-12 col-sm-10 col-md-10">
+            <span class="bg-info"><strong>资源</strong></span>
+            {% if movie.resource %}
+                <p>{{ movie.resource | safe }}</p>
+            {% else %}
+                <p>暂无资源</p>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-10 col-md-10">
             {% if user.is_authenticated %}
                 <strong>{{ user }}! 欢迎评论</strong>
-                <form method="POST" action="{% url 'post_comment' %}">  
+                <form method="POST" action="{% url 'post_comment' %}">
+                    {% csrf_token %}  
                     {% for field in comment_form %}
                         {{ field }}
                     {% endfor %}
@@ -62,7 +73,7 @@
                 <div class="comment-item">
                     <span>
                         <span class="comment-user">{{ comment.user }} </span>
-                        <span>{{ comment.create_time | date:'y-m-d h:m:s' }}</span>
+                        <span>{{ comment.create_time | date:'Y-m-d H:i:s' }}</span>
                     </span>                     
                     <p>{{ comment.context | safe }}</p>
                 </div>
@@ -72,7 +83,7 @@
 {% endblock %}
 
 {% block movie_type %}
-    
+    <strong>类型：</strong>
     <div class="row" >
         {% for type in movie_type %}
         <p><span class="glyphicon glyphicon-tags" aria-hidden="true"></span><a href="{% url 'movie_type' type.pk %}">  {{ type.name }}</a></p>

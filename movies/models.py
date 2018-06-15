@@ -43,7 +43,7 @@ class Movie(models.Model):
                                       options={'quality': 60})
     name = models.CharField(verbose_name='电影名字', max_length=25)#电影名
     director = models.CharField(verbose_name='导演', max_length=25, default='')#导演
-    actor = models.CharField(verbose_name='主演', max_length=25, default='')#演员
+    actor = models.CharField(verbose_name='主演', max_length=50, default='')#演员
     movie_type = models.ForeignKey(to='MovieType', verbose_name='电影类型', on_delete=models.DO_NOTHING)#电影类型
     producer_country = models.ForeignKey(to='Country', verbose_name='制片国家', related_name='producer_country',
                                         on_delete=models.DO_NOTHING)#制片国家
@@ -58,6 +58,8 @@ class Movie(models.Model):
                                 default=0)#评分
     synopsis = RichTextUploadingField(verbose_name='剧情简介', default='')#剧情简介
     create_datetime = models.DateTimeField(auto_now_add=True)#日记创建日期
+    resource = RichTextUploadingField(verbose_name='电影资源', default='')
+
 
     def __str__(self):
         return '<Movie>:{0}'.format(self.name)
