@@ -25,7 +25,7 @@
             <p>类型: <a href="{% url 'movie_type' movie.movie_type.pk %}">{{ movie.movie_type }}</a></p>
             <p>制片地区/国家: <a href="{% url 'country' movie.producer_country.pk %}">{{ movie.producer_country }}</a></p>
             <p>语言: {{ movie.language }}</p>
-            <p>上映日期: {{ movie.release_date | date:'y-m-d' }}({{ movie.release_country }})</p>
+            <p>上映日期: {{ movie.release_date | date:'Y-m-d' }}({{ movie.release_country }})</p>
             <p>片长: {{ movie.time_length }}分钟</p>
         </div>
         <div class="col-xs-12 col-sm-4 col-md-4">
@@ -50,6 +50,7 @@
     </div>
     <div class="row">
         <div class="col-xs-12 col-sm-10 col-md-10">
+            <span class="bg-info"><strong>评论区</strong></span>
             {% if user.is_authenticated %}
                 <strong>{{ user }}! 欢迎评论</strong>
                 <form method="POST" action="{% url 'post_comment' %}">
@@ -68,7 +69,6 @@
     {# 评论区 #}
     <div class="row">
         <div class="col-xs-12 col-sm-10 col-md-10">
-            <strong>评论区</strong>
             {% for comment in comments %}
                 <div class="comment-item">
                     <span>

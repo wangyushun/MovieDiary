@@ -14,7 +14,8 @@ Sign up
                     <h3 class="panel-title">注册</h3>
                 </div>
                 <div class="panel-body">
-                    <form method="POST" action="{% url 'signup' %}">  
+                    <form method="POST" action="{% url 'signup' %}"> 
+                        {% csrf_token %} 
                         {% for field in signup_form %}
                             {{ field.label_tag }} {{ field }}
                             <p class="text-danger">{{ field.errors.as_text }}</p>

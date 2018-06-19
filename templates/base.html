@@ -30,6 +30,7 @@
                <li><a href="{% url 'about' %}">关于</a></li> 
             </ul>
             <form class="navbar-form navbar-left" role="search" action="{% url 'search' %}" method="POST">
+                {% csrf_token %}
                 <div class="form-group">
                     <input type="text"  name="search" class="form-control" required="required" placeholder="Search">
                 </div>
@@ -40,6 +41,7 @@
                 {# 用户已登录 #}
                 {% if user.is_authenticated %}
                     <form class="navbar-form navbar-right" role="signout" action="{% url 'signout' %}" method="POST">
+                        {% csrf_token %}
                         <input type="text"  name="user" hidden="hidden" value="{{ user.pk }}">
                         <button type="submit" class="btn">注销</button>
                     </form>

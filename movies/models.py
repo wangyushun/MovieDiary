@@ -58,7 +58,7 @@ class Movie(models.Model):
                                 default=0)#评分
     synopsis = RichTextUploadingField(verbose_name='剧情简介', default='')#剧情简介
     create_datetime = models.DateTimeField(auto_now_add=True)#日记创建日期
-    resource = RichTextUploadingField(verbose_name='电影资源', default='')
+    resource = RichTextUploadingField(verbose_name='电影资源', blank=True, default='')
 
 
     def __str__(self):
