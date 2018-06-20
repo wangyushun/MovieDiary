@@ -21,10 +21,29 @@
         </div>
         <div class="col-xs-12 col-sm-5 col-md-5">
             <p>导演: {{ movie.director }}</p>
+            <p>编剧：{{ movie.scriptwriter }}</p>
             <p>主演: {{ movie.actor }}</p>
-            <p>类型: <a href="{% url 'movie_type' movie.movie_type.pk %}">{{ movie.movie_type }}</a></p>
-            <p>制片地区/国家: <a href="{% url 'country' movie.producer_country.pk %}">{{ movie.producer_country }}</a></p>
-            <p>语言: {{ movie.language }}</p>
+            <p>类型:
+                {% for type in movie.movie_type.all %}
+                    <span>{{ type }}</span>
+                {% empty %}
+                    <span>不详</span>
+                {% endfor %} 
+            </p>
+            <p>制片地区/国家: 
+                {% for country in movie.producer_country.all %}
+                    <span>{{ country }}</span>
+                {% empty %}
+                    <span>不详</span>
+                {% endfor %}
+            </p>
+            <p>语言: 
+                {% for language in movie.language.all %}
+                    <span>{{ language }}</span>
+                {% empty %}
+                    <span>不详</span>
+                {% endfor %}
+            </p>
             <p>上映日期: {{ movie.release_date | date:'Y-m-d' }}({{ movie.release_country }})</p>
             <p>片长: {{ movie.time_length }}分钟</p>
         </div>

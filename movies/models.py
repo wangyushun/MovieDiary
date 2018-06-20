@@ -42,14 +42,13 @@ class Movie(models.Model):
                                       format='JPEG',
                                       options={'quality': 60})
     name = models.CharField(verbose_name='电影名字', max_length=25)#电影名
-    director = models.CharField(verbose_name='导演', max_length=25, default='')#导演
+    director = models.CharField(verbose_name='导演', max_length=25, default='不详')#导演
+    scriptwriter = models.CharField(verbose_name='编剧', max_length=50, default='不详')
     actor = models.CharField(verbose_name='主演', max_length=50, default='')#演员
-    movie_type = models.ForeignKey(to='MovieType', verbose_name='电影类型', on_delete=models.DO_NOTHING)#电影类型
-    producer_country = models.ForeignKey(to='Country', verbose_name='制片国家', related_name='producer_country',
-                                        on_delete=models.DO_NOTHING)#制片国家
-    language = models.ForeignKey(to='Language', verbose_name='语言', on_delete=models.DO_NOTHING)#语言
+    movie_type = models.ManyToManyField(to='MovieType', verbose_name='电影类型', related_name='movie_type')#电影类型
+    producer_country = models.ManyToManyField(to='Country', verbose_name='制片国家', related_name='producer_country')#制片国家
+    language = models.ManyToManyField(to='Language', verbose_name='语言', related_name='language')#语言
     release_date = models.DateField(verbose_name='上映日期')#上映日期
-    #release_country = models.CharField(verbose_name='上映国家', max_length=20)#上映国家
     release_country = models.ForeignKey(to='Country', verbose_name='上映国家', related_name='release_country',
                                         on_delete=models.DO_NOTHING)#上映国家
     time_length = models.IntegerField(verbose_name='电影时长', default=0)#时长，单位分钟
