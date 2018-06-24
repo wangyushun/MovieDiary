@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+#from django.views.generic.base import TemplateView
 from . import views 
 from movies import rss
 
@@ -32,6 +33,8 @@ urlpatterns = [
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('comment/', include('comments.urls')),
     path('api/', include('restapi.urls')),
+    #path('blog/', TemplateView.as_view(template_name='index.html')),
 ]
 
+#
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -31,29 +31,27 @@
             </ul>
             <form class="navbar-form navbar-left" role="search" action="{% url 'search' %}" method="POST">
                 {% csrf_token %}
-                <div class="form-group">
-                    <input type="text"  name="search" class="form-control" required="required" placeholder="Search">
-                </div>
+                <input type="text"  name="search" class="form-control" required="required" placeholder="Search">
                 <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search"></span></button>
             </form>
             
-            <div class="nav navbar-nav navbar-right">
-                {# 用户已登录 #}
-                {% if user.is_authenticated %}
-                    <form class="navbar-form navbar-right" role="signout" action="{% url 'signout' %}" method="POST">
-                        {% csrf_token %}
-                        <input type="text"  name="user" hidden="hidden" value="{{ user.pk }}">
-                        <button type="submit" class="btn">注销</button>
-                    </form>
-                    <p class="navbar-text navbar-right"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{ user }}</p>
-                {% else %}
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="{% url 'signin' %}">登录</a></li>
-                        <li><a href="{% url 'signup' %}">注册</a></li>
-                    </ul>
-                {% endif %}
+            {# 用户已登录 #}
+            {% if user.is_authenticated %}
+                <form class="navbar-form navbar-right" role="signout" action="{% url 'signout' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="text"  name="user" hidden="hidden" value="{{ user.pk }}">
+                    <button type="submit" class="btn">注销</button>
+                </form>
+                <p class="navbar-text navbar-right"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{ user }}</p>
+            {% else %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{% url 'signin' %}">登录</a></li>
+                    <li><a href="{% url 'signup' %}">注册</a></li>
+                </ul>
+            {% endif %}
+            <ul class="nav navbar-nav navbar-right">
                 <li><a href="{% url 'rss' %}">RSS 订阅</a></li>
-            </div>               
+            </ul>             
         </div>
       </div>
     </nav>
@@ -63,5 +61,6 @@
     <script type="text/javascript" src="{% static 'jquery-1.12.4/jquery.min.js' %}"></script>
     {# 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件 #} 
     <script type="text/javascript" src="{% static 'bootstrap-3.3.7/js/bootstrap.min.js' %}"></script>
+    {% block script %}{% endblock %}
 </body>
 </html>

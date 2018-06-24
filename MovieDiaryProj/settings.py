@@ -65,6 +65,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'),
+            #os.path.join(BASE_DIR, 'blog_frontend\dist'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -132,10 +133,13 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'collect_static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
+    #os.path.join(BASE_DIR, 'blog_frontend/dist/static'),
 ]
 
 #media
-MEDIA_URL="/media/"
+
+#MEDIA_URL是指从浏览器访问时的地址前缀，访问xxxxx/media/a.png 等于访问MEDIA_ROOT/a.png
+MEDIA_URL="/media/" 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")  
 
 #ckeditor
