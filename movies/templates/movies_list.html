@@ -1,83 +1,88 @@
 {% extends "movie_base.html" %}
 
+
 {% block title %}
 电影
 {% endblock %}
 
-{% block context %}    
-    <div class="row" >
-        {% for movie in movies %}
-        <div class="col-xs-6 col-sm-3 col-md-3">
-            <div class="thumbnail">
-                {% if movie.poster %}
-                <a href="{% url 'movie_detail' movie.pk %}">
-                    <!-- <img src="{{ movie.poster.url }}"  alt="海报"> -->
-                    <img src="{{ movie.poster_thumbnail.url }}"  alt="海报">
-                </a>
-                {% endif %}
-                <div class="caption">
-                    <a href="{% url 'movie_detail' movie.pk %}"><p style="overflow:hidden; white-space:nowrap; text-overflow:ellipsis;">{{ movie.name }}</p></a>
-                    <p><span class="glyphicon glyphicon-star" aria-hidden="true"></span> {{ movie.grade }}</p>    
-                </div>
-            </div>           
-        </div>
-        {% empty %}
-        还未发布电影记录
-        {% endfor %}
-    </div>  
-    <div>
-        <nav aria-label="Page navigation">
-            <ul class="pagination">
-                {% if page_list %}
-                    {% if movies.has_previous %}
-                        <li><a href="?page={{ movies.previous_page_number }}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-                    {% else %}
-                        <li class="disable"><span aria-hidden="true">&laquo;</span></li>
+
+{% block context %}  
+<div class="row">
+    {# 主显示区 #}
+    <div class="col-sm-offset-1 col-xs-12 col-sm-8 main-content">
+        <div class="row" >
+            {% for movie in movies %}
+            <div class="col-xs-6 col-sm-3 col-md-3">
+                <div class="thumbnail">
+                    {% if movie.poster %}
+                    <a href="{% url 'movie_detail' movie.pk %}">
+                        <img src="{{ movie.poster_thumbnail.url }}"  alt="海报">
+                    </a>
                     {% endif %}
-                {% endif %}
-                {% for p in page_list %}     
-                    {% if movies.number == p %} 
-                        <li class="active"><a href="?page={{ p }}">{{ p }}</a></li>
-                    {% else %}  
-                        {% if p == 'left' %} 
-                            <li><a href="?page={{ left }}">...</a></li>
-                        {% else %} 
-                            {% if p == 'right' %}  
-                                <li><a href="?page={{ right }}">...</a></li> 
-                            {% else %}  
-                                <li><a href="?page={{ p }}">{{ p }}</a></li>
-                            {% endif %}
+                    <div class="caption">
+                        <a href="{% url 'movie_detail' movie.pk %}"><p style="overflow:hidden; white-space:nowrap; text-overflow:ellipsis;">{{ movie.name }}</p></a>
+                        <p><span class="glyphicon glyphicon-star" aria-hidden="true"></span> {{ movie.grade }}</p>    
+                    </div>
+                </div>           
+            </div>
+            {% empty %}
+            还未发布电影记录
+            {% endfor %}
+        </div>  
+        <div>
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    {% if page_list %}
+                        {% if movies.has_previous %}
+                            <li><a href="?page={{ movies.previous_page_number }}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                        {% else %}
+                            <li class="disable"><span aria-hidden="true">&laquo;</span></li>
                         {% endif %}
                     {% endif %}
-                {% endfor %}
-                {% if page_list %}
-                    {% if movies.has_next %}
-                        <li><a href="?page={{ movies.next_page_number }}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
-                    {% else %}
-                        <li class="disable"><span aria-hidden="true">&raquo;</span></li>
+                    {% for p in page_list %}     
+                        {% if movies.number == p %} 
+                            <li class="active"><a href="?page={{ p }}">{{ p }}</a></li>
+                        {% else %}  
+                            {% if p == 'left' %} 
+                                <li><a href="?page={{ left }}">...</a></li>
+                            {% else %} 
+                                {% if p == 'right' %}  
+                                    <li><a href="?page={{ right }}">...</a></li> 
+                                {% else %}  
+                                    <li><a href="?page={{ p }}">{{ p }}</a></li>
+                                {% endif %}
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                    {% if page_list %}
+                        {% if movies.has_next %}
+                            <li><a href="?page={{ movies.next_page_number }}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+                        {% else %}
+                            <li class="disable"><span aria-hidden="true">&raquo;</span></li>
+                        {% endif %}
                     {% endif %}
-                {% endif %}
-            </ul>
-        </nav>
-    </div>       
+                </ul>
+            </nav>
+        </div>
+    </div>
+    {# 右边栏显示区 #}
+    <div class="col-xs-12 col-sm-2 main-content">
+        <strong>类型：</strong>
+        <div class="row-col">
+            <p><span class="glyphicon glyphicon-tags" aria-hidden="true"></span><a href="{% url 'movie' %}">  全部</a></p>
+            {% for type in movie_type %}
+                <p><span class="glyphicon glyphicon-tags" aria-hidden="true"></span><a href="{% url 'movie_type' type.pk %}">  {{ type.name }}</a></p>
+            {% endfor %}
+        </div>
+        <br>
+        <strong>地区：</strong>
+        <div class="row-col" >
+            <p><span class="glyphicon glyphicon-tags" aria-hidden="true"></span><a href="{% url 'movie' %}">  全部</a></p>
+            {% for cty in country %}
+                <p><span class="glyphicon glyphicon-tags" aria-hidden="true"></span><a href="{% url 'country' cty.pk %}">  {{ cty.name }}</a></p>
+            {% endfor %}
+        </div>
+    </div>
+</div>  
 {% endblock %}
 
-{% block movie_type %}
-    <strong>类型：</strong>
-    <div class="row" >
-        <p><span class="glyphicon glyphicon-tags" aria-hidden="true"></span><a href="{% url 'movie' %}">  全部</a></p>
-        {% for type in movie_type %}
-            <p><span class="glyphicon glyphicon-tags" aria-hidden="true"></span><a href="{% url 'movie_type' type.pk %}">  {{ type.name }}</a></p>
-        {% endfor %}
-    </div>
-{% endblock %}
-
-{% block producer_country %}
-    <strong>地区：</strong>
-    <div class="row" >
-        <p><span class="glyphicon glyphicon-tags" aria-hidden="true"></span><a href="{% url 'movie' %}">  全部</a></p>
-        {% for cty in country %}
-            <p><span class="glyphicon glyphicon-tags" aria-hidden="true"></span><a href="{% url 'country' cty.pk %}">  {{ cty.name }}</a></p>
-        {% endfor %}
-    </div>
-{% endblock %}

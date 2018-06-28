@@ -1,19 +1,25 @@
 {% extends "movie_base.html" %}
 
 {% load staticfiles %}
-{% block head %}
+
+
+{% block movie_base_head %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/movie/movie_detail.css' %}">
     <script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
     <script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
 {% endblock %}
 
+
 {% block title %}
     {{ movie.name }}
 {% endblock %}
 
-{% block context %}  
+
+{% block context %} 
+{# 主显示区 #}
+<div class="col-sm-offset-2 col-xs-12 col-sm-8 col-md-8 main-content"> 
     <div class="row">
-        <div class="col-xs-12 col-sm-10 col-md-10">
+        <div class="col-xs-12 col-sm-12 col-md-12">
             <h3>{{ movie.name }}({{ movie.release_date | date:'Y' }})</h3>
         </div>
         <div class="col-sm-3 col-md-3">
@@ -52,13 +58,13 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-12 col-sm-10 col-md-10">
+        <div class="col-xs-12">
             <span class="bg-info"><strong>剧情简介</strong></span>
             <p>{{ movie.synopsis | safe }}</p>
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-12 col-sm-10 col-md-10">
+        <div class="col-xs-12 col-sm-12 col-md-12">
             <span class="bg-info"><strong>资源</strong></span>
             {% if movie.resource %}
                 <p>{{ movie.resource | safe }}</p>
@@ -68,7 +74,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-12 col-sm-10 col-md-10">
+        <div class="col-xs-12 col-sm-12 col-md-12">
             <span class="bg-info"><strong>评论区</strong></span>
             {% if user.is_authenticated %}
                 <strong>{{ user }}! 欢迎评论</strong>
@@ -87,7 +93,7 @@
     </div>
     {# 评论区 #}
     <div class="row">
-        <div class="col-xs-12 col-sm-10 col-md-10" id="comment-section">
+        <div class="col-xs-12 col-sm-12 col-md-12" id="comment-section">
             {% for comment in comments %}
                 <div class="comment-item">
                     <span>
@@ -99,25 +105,9 @@
             {% endfor %}
         </div>
     </div>
+</div>
 {% endblock %}
 
-{% block movie_type %}
-    <strong>类型：</strong>
-    <div class="row" >
-        {% for type in movie_type %}
-        <p><span class="glyphicon glyphicon-tags" aria-hidden="true"></span><a href="{% url 'movie_type' type.pk %}">  {{ type.name }}</a></p>
-        {% endfor %}
-    </div>
-{% endblock %}
-
-{% block producer_country %}
-    <strong>地区：</strong>
-    <div class="row" >
-        {% for cty in country %}
-            <p><span class="glyphicon glyphicon-tags" aria-hidden="true"></span><a href="{% url 'country' cty.pk %}">  {{ cty.name }}</a></p>
-        {% endfor %}
-    </div>
-{% endblock %}
 
 {% block script %}
     <script type="text/javascript" src="{% static 'movies_js/movie_detail.js' %}"></script>    

@@ -20,5 +20,7 @@ class Comment(models.Model):
 
     class Meta:
         ordering = ['-create_time'] #时间倒序
+        verbose_name = '评论'
+        verbose_name_plural = '评论'
 
 

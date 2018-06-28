@@ -27,7 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'wangyushun.pythonanywhere.com',
-    '127.0.0.1'
+    '127.0.0.1',
+    'localhost'
     ]
 
 
@@ -46,6 +47,7 @@ INSTALLED_APPS = [
     'imagekit',
     'movies',
     'comments',
+    'blog',
 ]
 
 MIDDLEWARE = [
@@ -166,6 +168,13 @@ CKEDITOR_CONFIGS = {
         'resize_enabled': 'False',
         'tabSpaces': 4,
     }
+}
+
+#rest_framework app settings
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly', #默认API访问权限只读
+    )
 }
 
 #自定义

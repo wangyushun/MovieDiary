@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>My Blog</title>
+	<link rel="stylesheet" type="text/css" href="../static/blog.css">
+</head>
+<body>
+	{# 告诉django不要渲染，防止修改vue的模板 #}
+	{% verbatim %}
+	<div id="app">
+		<mycomp></mycomp>
+	</div>
+	{% endverbatim %}
+<script type="text/javascript" src="../../static/vue/2.5.16/dist/vue.js"></script>
+<script type="text/javascript" src="../static/blog.js"></script>	
+</body>
+</html>

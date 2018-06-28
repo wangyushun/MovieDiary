@@ -33,6 +33,7 @@ urlpatterns = [
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('comment/', include('comments.urls')),
     path('api/', include('restapi.urls')),
+    path('blog/', include('blog.urls')),
     #path('blog/', TemplateView.as_view(template_name='index.html')),
 ]
 

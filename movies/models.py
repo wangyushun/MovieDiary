@@ -13,6 +13,10 @@ class MovieType(models.Model):
     '''
     name = models.CharField(max_length=25)
 
+    class Meta:
+        verbose_name = '电影类型'
+        verbose_name_plural = '电影类型'
+
     def __str__(self):
         return self.name
 
@@ -22,6 +26,10 @@ class Language(models.Model):
     '''
     name = models.CharField(max_length=25)
 
+    class Meta:
+        verbose_name = '语言'
+        verbose_name_plural = '语言'
+
     def __str__(self):
         return self.name
 
@@ -30,6 +38,10 @@ class Country(models.Model):
     地区国家
     '''
     name = models.CharField(max_length=25)
+
+    class Meta:
+        verbose_name = '国家/地区'
+        verbose_name_plural = '国家/地区'
 
     def __str__(self):
         return self.name
@@ -56,7 +68,7 @@ class Movie(models.Model):
                                 validators=[validators.MaxValueValidator(10.0), validators.MinValueValidator(0.0)],
                                 default=0)#评分
     synopsis = RichTextUploadingField(verbose_name='剧情简介', default='')#剧情简介
-    create_datetime = models.DateTimeField(auto_now_add=True)#日记创建日期
+    create_datetime = models.DateTimeField(verbose_name='创建日期', auto_now_add=True)#日记创建日期
     resource = RichTextUploadingField(verbose_name='电影资源', blank=True, default='')
 
 
@@ -65,6 +77,8 @@ class Movie(models.Model):
 
     class Meta:
         ordering = ['-create_datetime']#按日期倒序排序
+        verbose_name = '电影'
+        verbose_name_plural = '电影'
 
 
 class MovieLines(models.Model):
@@ -76,6 +90,10 @@ class MovieLines(models.Model):
 
     def __str__(self):
         return '<MovieLines>:{0}--<<{1}>>'.format(self.lines, self.provenance)
+
+    class Meta:
+        verbose_name = '电影台词'
+        verbose_name_plural = '电影台词'
     
 
 
