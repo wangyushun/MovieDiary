@@ -1,18 +1,37 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<title>My Blog</title>
-	<link rel="stylesheet" type="text/css" href="../static/blog.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'blog/blog.css' %}">
+	<link rel="stylesheet" href="{% static 'bootstrap-3.3.7/css/bootstrap.min.css' %}" >
 </head>
 <body>
+	<div>
+		<img class="img-responsive center-block" src="{% static 'logo/blog-logo.jpg' %}">	
+	</div>
 	{# 告诉django不要渲染，防止修改vue的模板 #}
 	{% verbatim %}
-	<div id="app">
-		<mycomp></mycomp>
+	<div class="container" id="app">
+		<!-- 路由出口 路由匹配到的组件将渲染在这里 -->
+		<div class="row col-md-offset-1 col-sm-12 col-md-8 blog-list">
+			<router-view></router-view>
+		</div>
+		</div>			
 	</div>
 	{% endverbatim %}
-<script type="text/javascript" src="../../static/vue/2.5.16/dist/vue.js"></script>
-<script type="text/javascript" src="../static/blog.js"></script>	
+
+{# jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) #} 
+<script type="text/javascript" src="{% static 'jquery-1.12.4/jquery.min.js' %}"></script>
+{# 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件 #} 
+<script type="text/javascript" src="{% static 'bootstrap-3.3.7/js/bootstrap.min.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'vue/2.5.16/dist/vue.js' %}"></script>
+<script type="text/javascript" src="{% static 'vue-router/dist/vue-router.js' %}"></script>
+<script type="text/javascript" src="{% static 'axios/dist/axios.js' %}"></script>
+<script type="text/javascript" src="{% static 'blog/blog.js' %}"></script>	
 </body>
 </html>

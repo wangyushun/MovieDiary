@@ -1,6 +1,7 @@
 /.vscode/
 *.sqlite3
-/media/
+/media/*
+!/media/logo/
 *__pycache__/
 *.pyc
 

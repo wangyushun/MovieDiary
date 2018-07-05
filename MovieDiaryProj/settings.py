@@ -135,20 +135,33 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'collect_static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
-    #os.path.join(BASE_DIR, 'blog_frontend/dist/static'),
+    # os.path.join(BASE_DIR, 'blog/static'),
 ]
 
 #media
 
 #MEDIA_URL是指从浏览器访问时的地址前缀，访问xxxxx/media/a.png 等于访问MEDIA_ROOT/a.png
 MEDIA_URL="/media/" 
+# MEDIA_URL="http://127.0.0.1:8000/media/" 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")  
 
 #ckeditor
 CKEDITOR_UPLOAD_PATH = "upload/"
 CKEDITOR_CONFIGS = {
     'default': {
-
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            {'name': 'styles', 'items': ['Format', 'Bold', 'Italic', 'Underline']},
+            {'name': 'paragraph',
+             'items':['NumberedList', 'Outdent', 'Indent', 'JustifyLeft', 
+             'JustifyCenter', 'JustifyRight', 'JustifyBlock']},           
+            {'name': 'colors', 'items': ['TextColor', 'BGColor']},
+            {'name': 'insert', 'items': ['Link', 'Unlink', 'Image', 'Smiley', 'SpecialChar']},
+            {'name': 'tools', 
+            'items':['RemoveFormat', 'Undo', 'Redo', 'SelectAll', 'Maximize', 'Source']},
+        ],
+        #配置上传图片时不需要的内联样式属性
+        'disallowedContent': 'img{width,height,margin-left, margin-right};img[width,height,margin-left, margin-right];'
     },
 
     'comment_ckeditor': {
@@ -167,7 +180,7 @@ CKEDITOR_CONFIGS = {
         'remove_plugins': 'elementspash',
         'resize_enabled': 'False',
         'tabSpaces': 4,
-    }
+    },
 }
 
 #rest_framework app settings

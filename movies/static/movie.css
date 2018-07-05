@@ -24,4 +24,8 @@
     flex-direction: column;
 }
 
-
+div .movie-synopsis img {
+    max-width: 100%;
+    height: auto; 
+    display: block;
+}

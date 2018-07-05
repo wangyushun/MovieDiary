@@ -32,7 +32,7 @@ class CustomPagination(PageNumberPagination):
     '''
     自定义列表视图的分页，返回数据格式
     ''' 
-    page_size = 2 
+    page_size = 10 
     page_size_query_param = 'page_size'  
     page_query_param = "page"  
     max_page_size = 100 
@@ -41,6 +41,7 @@ class CustomPagination(PageNumberPagination):
         return Response(OrderedDict([
             ('count', self.page.paginator.count),
             ('num_pages', self.page.paginator.num_pages),#总页数
+            ('page_number', self.page.number),
             ('next', self.get_next_link()),
             ('previous', self.get_previous_link()),
             ('results', data),
@@ -65,7 +66,7 @@ class MovieViewSet(viewsets.ModelViewSet):
         except ValueError:
             raise Http404("Movie does not exist")
         movie = get_object_or_404(Movie, pk=pk)
-        serializer = MovieDetailSerializer(movie, context={'request': request})
+        serializer = serializers.MovieDetailSerializer(movie, context={'request': request})
 
         return Response(serializer.data)
 
@@ -86,7 +87,7 @@ class CountryViewSet(viewsets.ModelViewSet):
     API endpoint that allows countrys to be viewed or edited.
     """
     queryset = Country.objects.all()
-    serializer_class = serializers.CountrySerializer
+    serializer_class = serializers.CountrySerializer()
     pagination_class = DefaultPagination 
 
 
