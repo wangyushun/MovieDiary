@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% block title %}
 关于电影日记
@@ -10,11 +11,30 @@
         <div id="about" class="col-sm-offset-2 col-xs-12 col-sm-8">
             <div class="jumbotron">
                 <h2 class="text-center text-info"><em>声明</em></h2>
-                <p>网站是出于学习的目的编写的，用于记录自己看过的感觉不错的电影，数据来源于网络，若有侵权，请留言。</p>
-                <p><a class="btn btn-primary btn-lg" href="{% url 'movie' %}" role="button">淘电影</a></p>
+                <p>网站是出于学习的目的编写的，用于记录自己看过的感觉不错的电影和文章，数据来源于网络，若有侵权，请留言。</p>
+                <span><a class="btn btn-primary " href="{% url 'movie' %}" role="button">淘电影</a></span>
+                <span><a class="btn btn-info " href="{% url 'blog' %}" role="button">博客</a></span>
+                <a href="https://github.com/wangyushun" target="view_window">
+            		<img class="icon" src="{% static 'logo/github.jpg' %}"></img>
+            	</a>
+            	<span  title="Email:869588058@qq.com">
+            		<img class="icon" src="{% static 'logo/email.png' %}">
+            	</span>
             </div>
         </div>
     </div>
 </div>
+<style type="text/css">
+	.icon {
+		width: 35px;
+		height: auto;
+		border-radius: 10%;
+		background-color: white;
+	}
+
+	.icon:hover {
+		border-radius: 50%;
+		background-color: rgba(152, 172, 238, 0.5);
+	}
 </style>
 {% endblock %}
