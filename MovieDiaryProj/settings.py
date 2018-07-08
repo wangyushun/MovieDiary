@@ -88,9 +88,26 @@ WSGI_APPLICATION = 'MovieDiaryProj.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    # 'sqlite3': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    # },
+    #自己调试用
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',   # 数据库引擎
+    #     'NAME': 'mydata',       # 你要存储数据的库名，事先要创建之
+    #     'USER': 'root',         # 数据库用户名
+    #     'PASSWORD': 'shun',     # 密码
+    #     'HOST': 'localhost',    # 主机
+    #     'PORT': '3306',         # 数据库使用的端口
+    # },
+    # PythonAnywhere上mysql配置
+    'default' : { 
+        'ENGINE' : 'django.db.backends.mysql',
+        'NAME' : 'wangyushun$mydata',
+        'USER' : 'wangyushun' ,
+        'PASSWORD' : 'wys869588058' ,
+        'HOST' : 'wangyushun.mysql.pythonanywhere-services.com' ,
     }
 }
 
