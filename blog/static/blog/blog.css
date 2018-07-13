@@ -7,7 +7,6 @@
                 0 6px 10px -5px rgba(0, 0, 0, 0.2);
     margin-bottom: 20px;
     margin-right: 5px;
-    min-height: 600px;
 }
 
 .logo {
@@ -127,4 +126,35 @@ div .blog-text img {
 	margin-bottom: 50px;
 }
 
+hr.style-one {/*内嵌水平线*/
+	width:80%;
+	margin:0 auto;
+	border: 0;
+	height: 0;
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+hr.style-two {/*透明渐变水平线*/
+	width:80%;
+	margin:0 auto;
+	border: 0;
+	height: 1px;
+	background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+hr.style-three{/*渐变*/
+	width:80%;
+	margin:0 auto;
+	border: 0;
+	height: 1px;
+	background: #333;
+	background-image: linear-gradient(to right, #ccc, #333, #ccc);
+}
+
+
+.right-sidebar .blogtype-item {
+	background-color: rgba(255, 192, 203, 0.52);
+	margin: 2px;
+	border-radius: 50%;
+	background: #71e2f1;
+}
 

@@ -15,11 +15,13 @@
 	</div>
 	{# 告诉django不要渲染，防止修改vue的模板 #}
 	{% verbatim %}
-	<div class="container" id="app">
+	<div class="container-fluid" id="app">
 		<!-- 路由出口 路由匹配到的组件将渲染在这里 -->
-		<div class="row col-md-offset-1 col-sm-12 col-md-8 blog-list">
+		<div class="col-sm-offset-1 col-xs-12 col-sm-8 col-md-7 blog-list">
 			<router-view></router-view>
 		</div>
+		<div class="col-xs-0 col-sm-2 col-md-3">
+			<rught-side-bar></rught-side-bar>
 		</div>			
 	</div>
 	{% endverbatim %}

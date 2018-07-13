@@ -80,6 +80,20 @@ class BlogViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.BlogSerializer
     pagination_class = CustomPagination 
 
+    # 重写list方法，Get博客时，根据博客类型动态改变queryset，然后再调用父类list方法
+    def list(self, request, *args, **kwargs):
+        blogtype_id = request.GET.get('blogtype_id', 0)#获取博客类型id参数，没有参数默认为0
+        try:
+            pk = int(blogtype_id)
+        except ValueError:
+            raise Http404("BlogType does not exist")
+
+        if(pk > 0):
+            self.queryset = Blog.objects.filter(blog_type=pk).order_by('-create_time')
+        # else:
+        #     self.queryset = Blog.objects.all().order_by('-create_time')
+        return super(BlogViewSet, self).list(request, *args, **kwargs)
+
 
 class CountryViewSet(viewsets.ModelViewSet):
     """

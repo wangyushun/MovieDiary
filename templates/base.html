@@ -27,7 +27,7 @@
             <ul class="nav navbar-nav">
                <li><a href="{% url 'home' %}"><span class="glyphicon glyphicon-home"></span></a></li>
                <li><a href="{% url 'movie' %}">电影</a></li> 
-               <li><a href="{% url 'blog' %}">博客</a></li>
+               <li><a href="{% url 'blog' %} " target="view_window">博客</a></li>
                <li><a href="{% url 'about' %}">关于</a></li> 
             </ul>
             <form class="navbar-form navbar-left" role="search" action="{% url 'search' %}" method="POST">
