@@ -26,14 +26,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
-    path('signin/', views.sign_in, name='signin'),#登陆
-    path('signout/', views.sign_out, name='signout'),#注销
-    path('signup/', views.sign_up, name='signup'),#注册
     path('movie/', include('movies.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('comment/', include('comments.urls')),
     path('api/', include('restapi.urls')),
     path('blog/', include('blog.urls')),
+    path('user/', include('users.urls')),
     #path('blog/', TemplateView.as_view(template_name='index.html')),
 ]
 

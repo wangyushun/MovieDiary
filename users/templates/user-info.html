@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+	个人资料
+{% endblock %}
+
+
+{% block body %}
+	<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-offset-2 col-xs-12 col-sm-8">
+            <div class="jumbotron">
+                <h2 class="text-center">{{ user.username }}的资料</h2>
+                <br>
+				<P>最后一次登陆时间：{{ user.last_login }}</P>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

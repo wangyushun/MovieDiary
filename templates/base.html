@@ -32,18 +32,29 @@
             </ul>
             <form class="navbar-form navbar-left" role="search" action="{% url 'search' %}" method="POST">
                 {% csrf_token %}
-                <input type="text"  name="search" class="form-control" required="required" placeholder="Search">
-                <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search"></span></button>
+                <div class="input-group">
+                    <input type="text"  name="search" class="form-control" required="required" placeholder="Search">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search"></span></button>
+                    </span>
+                </div>
             </form>
             
             {# 用户已登录 #}
             {% if user.is_authenticated %}
-                <form class="navbar-form navbar-right" role="signout" action="{% url 'signout' %}" method="POST">
-                    {% csrf_token %}
-                    <input type="text"  name="user" hidden="hidden" value="{{ user.pk }}">
-                    <button type="submit" class="btn">注销</button>
-                </form>
-                <p class="navbar-text navbar-right"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{ user }}</p>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{ user }}<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'userinfo' %}">个人资料</a></li>
+                            {% if user.is_staff or user.is_superuser %}
+                                <li><a href="{% url 'admin:index' %}">后台管理</a></li>
+                            {% endif %}
+                            <li role="separator" class="divider"></li>
+                            <li><a href="{% url 'signout' %}">注销</a></li>
+                        </ul>
+                    </li>
+                </ul>
             {% else %}
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="{% url 'signin' %}">登录</a></li>

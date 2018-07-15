@@ -164,7 +164,7 @@ const RightSideBar = {
 			<hr class="style-three" />
 				<router-link class="btn blogtype-item" :to="{ name: 'bloglist'}">全部</router-link>
 			<template v-for="type in blogtypes">
-				<router-link class="btn blogtype-item" :to="{ name: 'bloglist', query: { blogtype_id: type.id }}">{{ type.name }}</router-link>
+				<router-link class="btn blogtype-item" :to="{ name: 'bloglist', query: { blogtype_id: type.id }}">{{ type.name }}({{ type.blog_count }})</router-link>
 			</template>
 		</div>
 	`,

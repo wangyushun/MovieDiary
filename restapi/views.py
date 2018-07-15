@@ -3,6 +3,7 @@ from collections import OrderedDict
 from django.shortcuts import render, get_object_or_404, Http404
 from django.core.paginator import Paginator
 from django.conf import settings
+from django.db.models import Count
 
 from rest_framework import viewsets
 from rest_framework.response import Response
@@ -144,7 +145,9 @@ class BlogTypeViewSet(viewsets.ModelViewSet):
     API endpoint that allows blogtypes to be viewed or edited.
     """
     queryset = BlogType.objects.all()
-    serializer_class = serializers.BlogTypeSerializer
+    serializer_class = serializers.BlogTypeCountSerializer
     pagination_class = DefaultPagination
 
+    def get_queryset(self):
+        return BlogType.objects.annotate(blog_count=Count('blog_type'))
 

@@ -120,13 +120,17 @@ class MovieDetailSerializer(serializers.HyperlinkedModelSerializer):
         return obj.release_country.name
 
 
-class BlogTypeSerializer(serializers.ModelSerializer):
+class BlogTypeCountSerializer(serializers.ModelSerializer):
     '''
-    博客类型模型序列化
+    博客类型模型序列化,带统计字段
     '''
+    blog_count = serializers.IntegerField()
+
     class Meta:
         model = BlogType
-        fields = ('id', 'name')
+        fields = ('id', 'name', 'blog_count')
+        # exclude = ('id',)
+        # fields = '__all__'
 
 
 
@@ -138,6 +142,14 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id', 'username')
 
+
+class BlogTypeSerializer(serializers.ModelSerializer):
+    '''
+    博客类型模型序列化
+    '''
+    class Meta:
+        model = BlogType
+        fields = ('id', 'name')
 
 
 class BlogSerializer(serializers.HyperlinkedModelSerializer):
@@ -164,15 +176,6 @@ class BlogSerializer(serializers.HyperlinkedModelSerializer):
          
 
 
-
-
-class BlogTypeSerializer(serializers.ModelSerializer):
-    '''
-    用户模型序列化
-    '''
-    class Meta:
-        model = BlogType
-        fields = ('id', 'name')
 
 
 
