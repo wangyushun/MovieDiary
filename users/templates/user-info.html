@@ -13,7 +13,18 @@
             <div class="jumbotron">
                 <h2 class="text-center">{{ user.username }}的资料</h2>
                 <br>
-				<P>最后一次登陆时间：{{ user.last_login }}</P>
+                <p>注册时间：{{ user.date_joined }}</p>
+				<p>最后一次登陆时间：{{ user.last_login }}</p>
+                {% if user.email %}
+                    <p>
+                        <span>邮箱：{{ user.email }}</span><a class="btn pull-right" href="{% url 'changeemail' %}">变更邮箱</a>
+                    </p>
+                {% else %}
+                    <p>
+                        <span>邮箱：未绑定</span><a class="btn pull-right" href="{% url 'changeemail' %}">绑定邮箱</a>
+                    </p>
+                {% endif %}
+
             </div>
         </div>
     </div>

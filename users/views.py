@@ -1,8 +1,13 @@
+import string
+from random import sample
+
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
 from django.urls import reverse  
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required 
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 
 from . import forms
 
@@ -59,5 +64,56 @@ def sign_up(request):
 def user_info(request):
     content = {}
     return render(request, 'user-info.html', content)
+
+
+@login_required
+def change_email(request):      
+    if request.method == 'POST':
+        email_form = forms.EmailForm(request.POST, request=request)
+        if email_form.is_valid():
+            user = email_form.cleaned_data['user']
+            user.email = email_form.cleaned_data['email']
+            user.save()
+            return redirect(reverse('userinfo'))
+    else:
+        email_form = forms.EmailForm()
+
+    content = {}
+    content['form_title'] = '更改或绑定邮箱'
+    content['submit_text'] = '提交'
+    content['action_url'] = reverse('changeemail')
+    content['form'] = email_form
+    return render(request, 'change_email.html', content)
+
+
+def send_verify_code(request):
+    data = {}
+    email = request.GET.get('email', None)
+    if not email:
+        data['statusCode'] = 400
+        data['statusText'] = '400 Bad Request,email is empty'
+    else:
+        code = ''.join(sample(string.ascii_letters + string.digits, 4))
+        request.session['email_verify_code'] = code
+        # 发送邮件
+        ret = send_mail(
+            subject='电影日记', #邮件标题
+            message='验证码：{code}'.format(code=code),#邮件内容
+            from_email='869588058@qq.com', #发件方
+            recipient_list=[email], #收件方
+            fail_silently=False,
+        )
+        if ret == 0:
+            data['statusCode'] = 500
+            data['statusText'] = '500 Send email faild'
+        else:
+            data['statusCode'] = 200
+            data['statusText'] = '200 OK'
+            data['code'] = code
+    return JsonResponse(data)
+
+
+
+
 
 

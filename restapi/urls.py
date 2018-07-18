@@ -13,6 +13,7 @@ router.register(r'movietypes', views.MovieTypeViewSet)
 router.register(r'movielines', views.MovieLinesViewSet)
 router.register(r'blogs', views.BlogViewSet)
 router.register(r'blogtypes', views.BlogTypeViewSet)
+router.register(r'blogtags', views.BlogTagViewSet)
 
 
 urlpatterns = [

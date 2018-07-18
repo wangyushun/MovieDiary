@@ -8,7 +8,7 @@ from django.utils import timezone
 from rest_framework import serializers
 
 from movies.models import Language, Country, Movie, MovieType, MovieLines
-from blog.models import Blog, BlogType
+from blog.models import Blog, BlogType, BlogTag
 
 
 def html_str_img_build_absolute_uri(request, html):
@@ -151,6 +151,25 @@ class BlogTypeSerializer(serializers.ModelSerializer):
         model = BlogType
         fields = ('id', 'name')
 
+class BlogTagSerializer(serializers.ModelSerializer):
+    '''
+    博客标签模型序列化
+    '''
+    class Meta:
+        model = BlogTag
+        fields = ('id', 'name')
+
+
+class BlogTagCountSerializer(serializers.ModelSerializer):
+    '''
+    博客标签模型序列化,带统计字段
+    '''
+    blog_count = serializers.IntegerField()
+
+    class Meta:
+        model = BlogTag
+        fields = ('id', 'name', 'blog_count')
+
 
 class BlogSerializer(serializers.HyperlinkedModelSerializer):
     '''
@@ -160,9 +179,10 @@ class BlogSerializer(serializers.HyperlinkedModelSerializer):
     post_by = UserSerializer()
     text = serializers.SerializerMethodField()
     create_time = serializers.SerializerMethodField()
+    blog_tags = serializers.SerializerMethodField()
     class Meta:
         model = Blog
-        fields = ('url', 'id', 'title', 'text', 'blog_type', 'create_time',
+        fields = ('url', 'id', 'title', 'text', 'blog_type', 'blog_tags', 'create_time',
                 'modified_time', 'author', 'post_by')
 
 
@@ -173,6 +193,9 @@ class BlogSerializer(serializers.HyperlinkedModelSerializer):
     def get_create_time(self, obj):
         time = timezone.localtime(obj.create_time)#UTC时间转本地时间
         return time.strftime('%Y-%m-%d %H:%M:%S')
+
+    def get_blog_tags(self, obj):
+        return [{'id':tag.id, 'name':tag.name} for tag in obj.blog_tags.all()]
          
 
 

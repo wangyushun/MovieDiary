@@ -212,3 +212,21 @@ REST_FRAMEWORK = {
 MOVIE_LIST_COUNT_PER_PAGE = 8
 
 
+# 配置邮箱发邮件的相关功能
+
+#这一项是固定的
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# smtp服务的邮箱服务器 我用的是163
+EMAIL_HOST = 'smtp.qq.com'
+# smtp服务固定的端口是25
+EMAIL_PORT = 25
+#发送邮件的邮箱
+EMAIL_HOST_USER = '869588058@qq.com'
+#在邮箱中设置的客户端授权密码
+EMAIL_HOST_PASSWORD = 'jcpqnxiskacqbaif'
+#收件人看到的发件人 <此处要和发送邮件的邮箱相同>
+EMAIL_FROM = '869588058@qq.com>'
+# 发送的电子邮件的主题行前缀
+EMAIL_SUBJECT_PREFIX = '电影日记'
+# 与SMTP服务器通信时是否使用TLS（安全）连接
+EMAIL_USE_TLS = True

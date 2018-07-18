@@ -18,7 +18,9 @@ class AllMoviesRssFeed(Feed):
 
     # 聚合器中显示的内容条目的标题
     def item_title(self, item):
-        return '[%s] %s' % (item.producer_country, item.name)
+        countrys = [country.name for country in item.producer_country.all()]
+        return '[{countrys}] {name}'.format(countrys='/'.join(countrys), name=item.name)
+
 
     # 聚合器中显示的内容条目的描述
     def item_description(self, item):

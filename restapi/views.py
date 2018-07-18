@@ -11,8 +11,8 @@ from rest_framework.views import APIView
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 
-from movies.models import Movie, Country, Language, MovieType, MovieLines
-from blog.models import Blog, BlogType
+from movies.models import (Movie, Country, Language, MovieType, MovieLines)
+from blog.models import (Blog, BlogType, BlogTag)
 from . import serializers
 
 # Create your views here.
@@ -84,13 +84,17 @@ class BlogViewSet(viewsets.ModelViewSet):
     # 重写list方法，Get博客时，根据博客类型动态改变queryset，然后再调用父类list方法
     def list(self, request, *args, **kwargs):
         blogtype_id = request.GET.get('blogtype_id', 0)#获取博客类型id参数，没有参数默认为0
+        blogtag_id = request.GET.get('blogtag_id', 0)
         try:
-            pk = int(blogtype_id)
+            type_pk = int(blogtype_id)
+            tag_pk = int(blogtag_id)
         except ValueError:
-            raise Http404("BlogType does not exist")
+            raise Http404("Blog type or tag does not exist")
 
-        if(pk > 0):
-            self.queryset = Blog.objects.filter(blog_type=pk).order_by('-create_time')
+        if(type_pk > 0):
+            self.queryset = Blog.objects.filter(blog_type=type_pk).order_by('-create_time')
+        elif tag_pk > 0:
+            self.queryset = Blog.objects.filter(blog_tags=tag_pk).order_by('-create_time')
         # else:
         #     self.queryset = Blog.objects.all().order_by('-create_time')
         return super(BlogViewSet, self).list(request, *args, **kwargs)
@@ -149,5 +153,17 @@ class BlogTypeViewSet(viewsets.ModelViewSet):
     pagination_class = DefaultPagination
 
     def get_queryset(self):
-        return BlogType.objects.annotate(blog_count=Count('blog_type'))
+        return BlogType.objects.annotate(blog_count=Count('blog_type')).filter(blog_count__gt=0)
 
+
+class BlogTagViewSet(viewsets.ModelViewSet):
+    """
+    博客类型视图集
+    API endpoint that allows blogtypes to be viewed or edited.
+    """
+    queryset = BlogTag.objects.all()
+    serializer_class = serializers.BlogTagCountSerializer
+    pagination_class = DefaultPagination
+
+    def get_queryset(self):
+        return BlogTag.objects.annotate(blog_count=Count('blog_tags')).filter(blog_count__gt=0)

@@ -3,14 +3,15 @@ const api_base_url = 'http://wangyushun.pythonanywhere.com/api/';
 
 const blogs_url = api_base_url + 'blogs/';
 const blogtypes_url = api_base_url + 'blogtypes/';
+const blogtags_url = api_base_url + 'blogtags/';
 
 // 博客列表组件
 const BlogList = {
 	template: `
 		<div>
-			<back-top iClass="glyphicon glyphicon-arrow-up" ></back-top>
-			<p v-if="! blogList.results">{{errorMsg}}</p>
-			<div v-else>				
+			<back-top iClass="glyphicon glyphicon-arrow-up"></back-top>
+			<p v-if="! isUpdateOk">{{errorMsg}}</p>
+			<div v-else-if="blogList.results.length > 0">
 				<p class="text-center">第{{blogList.page_number}}页/共{{blogList.num_pages}}页/共{{blogList.count}}篇</p>
 				<div v-for="blog in blogList.results" class="blog-list-item">
 					<div>
@@ -19,6 +20,9 @@ const BlogList = {
 						</h3>
 						<p>发表于: {{ blog.create_time }} </p>
 						<p v-if="blog.blog_type">分类：{{ blog.blog_type.name }}</p>
+						<p v-if="blog.blog_tags.length > 0">
+							<span v-for="tag in blog.blog_tags" class="glyphicon glyphicon-tags">{{ tag.name }}</span>
+						</p>
 					</div>				
 					<!-- <div v-html="blog.text | truncatechars(30)"></div> -->
 				</div>
@@ -47,11 +51,13 @@ const BlogList = {
             		</nav>
 				</div>
 			</div>
+			<p v-else>无相关记录</p>
 		</div>
 	`,
 	data() {
 		return {
 			blogList: {},
+			isUpdateOk: false,
 			errorMsg: "",
 		}
 	},
@@ -67,10 +73,12 @@ const BlogList = {
 			})
 			.then(response => {
 				this.blogList = response.data;
+				this.isUpdateOk = true;
 				// console.log(response.data);
 			})
 			.catch(error => {
 				// console.log(error);
+				this.isUpdateOk = false;
 				this.errorMsg = error.response.status + ':' +error.response.statusText;
 			});
 		},
@@ -81,9 +89,11 @@ const BlogList = {
 		},
 		get_data(){
 			let blogtype_id = this.$route.query.blogtype_id;
+			let blogtag_id = this.$route.query.blogtag_id;
 			let page = this.$route.query.page;
 			let params = {
 				blogtype_id: blogtype_id,
+				blogtag_id: blogtag_id,
 			};
 
 			if(page) {
@@ -112,7 +122,7 @@ const BlogDetail = {
 		<div>
 			<router-link class="btn float-button-back-list" 
 				:to="{ name: 'bloglist', query: { page: fromPage }}">返<br>回</router-link>
-			<template v-if="blog.title">			
+			<template v-if="isUpdateOk">			
 				<div>
 					<h3 class="blog-title" v-text="blog.title"></h3>
 					<div class="text_center">
@@ -133,6 +143,7 @@ const BlogDetail = {
 	data(){
 		return {
 			blog:"",
+			isUpdateOk: false,
 			errorMsg: "",
 			fromPage: ""
 		}
@@ -142,9 +153,11 @@ const BlogDetail = {
 			this.$http.get(blogs_url + this.id)
 			.then(response => {
 				this.blog = response.data;
+				this.isUpdateOk = true;
 				// console.log('blog', response.data)
 			})
 			.catch(error => {
+				this.isUpdateOk = false;
 				this.errorMsg = error.response.status + ':' +error.response.statusText;
 			})
 		}
@@ -156,10 +169,10 @@ const BlogDetail = {
 };
 
 
-//右侧边栏
-const RightSideBar = {
+//分类栏组件
+const BlogTypes = {
 	template: `
-		<div class="right-sidebar">
+		<div class="blog-type-sidebar">
 			<strong>分类</strong>
 			<hr class="style-three" />
 				<router-link class="btn blogtype-item" :to="{ name: 'bloglist'}">全部</router-link>
@@ -190,6 +203,58 @@ const RightSideBar = {
 		this.get_blogtypes();
 	}
 };
+
+
+//标签栏组件
+const BlogTags = {
+	template: `
+		<div class="blog-tag-sidebar">
+			<strong>标签</strong>
+			<hr class="style-three" />
+				<router-link class="btn blogtag-item" :to="{ name: 'bloglist'}">全部</router-link>
+			<template v-for="tag in blogtags">
+				<router-link class="btn blogtag-item" :to="{ name: 'bloglist', query: { blogtag_id: tag.id }}">{{ tag.name }}({{ tag.blog_count }})</router-link>
+			</template>
+		</div>
+	`,
+	data(){
+		return {
+			blogtags: {},
+			errorMsg: ''
+		};
+	},
+	methods:{
+		get_blogtags(url=blogtags_url){
+			this.$http.get(url)
+			.then(response => {
+				this.blogtags = response.data.results;
+				this.errorMsg = '';
+			})
+			.catch(error => {
+				this.errorMsg = error.response.status + ':' +error.response.statusText;
+			})
+		}
+	},
+	created(){
+		this.get_blogtags();
+	}
+};
+
+
+//右侧边栏
+const RightSideBar = {
+	template: `
+		<div class="right-sidebar">
+			<blog-types></blog-types>
+			<blog-tags></blog-tags>
+		</div>
+	`,
+	components: {
+		"blog-types": BlogTypes,
+		"blog-tags": BlogTags,
+	}
+};
+
 
 
 //回到顶部组件

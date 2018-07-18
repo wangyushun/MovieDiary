@@ -17,7 +17,7 @@ class SignInForm(forms.Form):
 
     def clean(self):
         '''
-        在条用is_valid()后会被调用
+        在调用is_valid()后会被调用
         '''
         username = self.cleaned_data['username']
         password = self.cleaned_data['password']
@@ -29,6 +29,7 @@ class SignInForm(forms.Form):
         return self.cleaned_data
 
 
+# 注册表单
 class SignUpForm(forms.Form):
     """docstring for SignUpForm"""
     email = forms.CharField(label='邮箱', 
@@ -73,3 +74,48 @@ class SignUpForm(forms.Form):
         if confirm_password != password:
             raise forms.ValidationError('密码输入不一致，请重新输入')
         return password
+
+
+#登陆表单
+class EmailForm(forms.Form):
+    email = forms.EmailField(label='邮箱', 
+                                widget=forms.EmailInput(attrs={
+                                                        'class': 'form-control',
+                                                        'placeholder': '请输入邮箱'}))
+    verification_code = forms.CharField(label='验证码', 
+                                max_length=10,
+                                widget=forms.TextInput(attrs={
+                                                        'class': 'form-control',
+                                                        'placeholder': '请点击“发送验证码”按钮后，输入收到的验证码'}))
+
+    def __init__(self, *args, **kwargs):
+        if 'request' in kwargs:
+            self.request = kwargs.pop('request')
+        return super(EmailForm, self).__init__(*args, **kwargs)
+
+
+    def clean(self):
+        '''
+        在调用is_valid()后会被调用
+        '''
+        #判断用户是否登陆
+        if self.request.user.is_authenticated:
+            self.cleaned_data['user'] = self.request.user
+        else:
+            raise forms.ValidationError('当前用户未登陆')
+
+        return self.cleaned_data
+
+    def  clean_email(self):
+        email = self.cleaned_data['email']
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError('该邮箱已经被绑定')
+        return email
+
+    def clean_verification_code(self):
+        # 判断验证码是否正确
+        code = self.cleaned_data['verification_code']
+        if (self.request.session.get('email_verify_code') != code) or (code == ''):
+            raise forms.ValidationError('验证码有误')
+        return code
+

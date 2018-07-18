@@ -150,11 +150,19 @@ hr.style-three{/*渐变*/
 	background-image: linear-gradient(to right, #ccc, #333, #ccc);
 }
 
+.blog-tag-sidebar, .blog-type-sidebar {
+	margin-bottom: 20px;
+}
 
-.right-sidebar .blogtype-item {
+.blog-type-sidebar .blogtype-item,
+.blog-tag-sidebar .blogtag-item {
 	background-color: rgba(255, 192, 203, 0.52);
 	margin: 2px;
 	border-radius: 50%;
 	background: #71e2f1;
 }
 
+.blog-type-sidebar .blogtype-item:hover,
+.blog-tag-sidebar .blogtag-item:hover {
+	background-color: pink;
+}
