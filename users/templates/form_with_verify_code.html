@@ -25,10 +25,8 @@
 					email: email,
 				},
 				success: function(data){
-					console.log('data:', data);
 				},
 				error: function(error){
-					console.log('error:', error);
 					$('#tip_text').text('发送验证码失败,请检查邮箱输入是否有误!');
 				}
 			});

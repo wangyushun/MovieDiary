@@ -20,12 +20,59 @@ Sign up
                             {{ field.label_tag }} {{ field }}
                             <p class="text-danger">{{ field.errors.as_text }}</p>
                         {% endfor %}
-                        <span class="text-danger pull-left">{{ signup_form.non_field_errors }}</span>
+                        <span id="tip_text" class="text-danger pull-left">{{ signup_form.non_field_errors }}</span>
+                        <div class="clearfix"></div>
                         <button type="submit" class="btn btn-primary pull-right">注册</button>
+                        <input type="button" class="btn btn-info" id="verify-code-send" value="发送验证码">
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript">
+        $('#verify-code-send').on('click', function(){
+            let email = $('#id_email').val();
+            if(!email){
+                $('#tip_text').text('邮箱不能为空!');
+                return;
+            }
+            else{
+                $('#tip_text').text('');
+            }
+            
+            $.ajax({
+                url: '{% url 'send_verify_code' %}',
+                type: 'GET',
+                cache: false,
+                data: {
+                    email: email,
+                },
+                success: function(data){
+                },
+                error: function(error){
+                    $('#tip_text').text('发送验证码失败,请检查邮箱输入是否有误!');
+                }
+            });
+
+            let delay_time = 30;
+            $(this).addClass('disabled')
+            $(this).attr('disabled', true);
+            $(this).val(delay_time + 's后重试');
+            let timer = setInterval(() => {
+                delay_time --;
+                if(delay_time <= 0){
+                    $(this).val('发送验证码');
+                    $(this).removeClass('disabled');
+                    $(this).attr('disabled', false);
+                    clearInterval(timer);
+                    return false;
+                }
+                $(this).val(delay_time + 's后重试');
+            }, 1000);
+        })
+    </script>
 {% endblock %}

@@ -230,3 +230,7 @@ EMAIL_FROM = '869588058@qq.com>'
 EMAIL_SUBJECT_PREFIX = '电影日记'
 # 与SMTP服务器通信时是否使用TLS（安全）连接
 EMAIL_USE_TLS = True
+
+
+# @login_required 装饰器发现用户未登录时重定向的url
+LOGIN_URL = '/user/signin/'

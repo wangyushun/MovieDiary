@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 
-from . import forms
+from . import forms, models
 
 # Create your views here.
 def sign_in(request):
@@ -39,7 +39,7 @@ def sign_out(request):
 
 def sign_up(request):
     if request.method == 'POST':
-        signup_form = forms.SignUpForm(request.POST)
+        signup_form = forms.SignUpForm(request.POST, request=request)
         if signup_form.is_valid():
             email = signup_form.cleaned_data['email']
             username = signup_form.cleaned_data['username']
@@ -50,6 +50,9 @@ def sign_up(request):
             #登陆用户
             user = auth.authenticate(username=username, password=password)#验证用户
             auth.login(request, user)
+            #清除验证码记录
+            if email in request.session:
+                del request.session[email]
             url = request.session.get('signup_form', reverse('home'))
             return redirect(url, args=[]) 
     else: 
@@ -63,6 +66,7 @@ def sign_up(request):
 @login_required
 def user_info(request):
     content = {}
+    content['user'] = request.user
     return render(request, 'user-info.html', content)
 
 
@@ -72,8 +76,11 @@ def change_email(request):
         email_form = forms.EmailForm(request.POST, request=request)
         if email_form.is_valid():
             user = email_form.cleaned_data['user']
-            user.email = email_form.cleaned_data['email']
+            email = email_form.cleaned_data['email']
+            user.email = email
             user.save()
+            if email in request.session:
+                del request.session[email]#清除验证码记录
             return redirect(reverse('userinfo'))
     else:
         email_form = forms.EmailForm()
@@ -83,7 +90,7 @@ def change_email(request):
     content['submit_text'] = '提交'
     content['action_url'] = reverse('changeemail')
     content['form'] = email_form
-    return render(request, 'change_email.html', content)
+    return render(request, 'form_with_verify_code.html', content)
 
 
 def send_verify_code(request):
@@ -94,7 +101,6 @@ def send_verify_code(request):
         data['statusText'] = '400 Bad Request,email is empty'
     else:
         code = ''.join(sample(string.ascii_letters + string.digits, 4))
-        request.session['email_verify_code'] = code
         # 发送邮件
         ret = send_mail(
             subject='电影日记', #邮件标题
@@ -107,6 +113,7 @@ def send_verify_code(request):
             data['statusCode'] = 500
             data['statusText'] = '500 Send email faild'
         else:
+            request.session[email] = code #以邮箱做key保存验证码，以防止提交更改时邮箱不一致
             data['statusCode'] = 200
             data['statusText'] = '200 OK'
             data['code'] = code
@@ -114,6 +121,74 @@ def send_verify_code(request):
 
 
 
+def forget_password(request):      
+    if request.method == 'POST':
+        form = forms.ForgetPasswordForm(request.POST, request=request)
+        if form.is_valid():
+            user = form.cleaned_data['user']
+            new_password = form.cleaned_data['new_password']
+            user.set_password(new_password)
+            user.save()
+            #清除验证码记录
+            email = form.cleaned_data['email']
+            if email in request.session:
+                del request.session[email]
+            return redirect(reverse('signin'))
+    else:
+        form = forms.ForgetPasswordForm()
+
+    content = {}
+    content['form_title'] = '忘记密码'
+    content['submit_text'] = '提交'
+    content['action_url'] = reverse('forget_password')
+    content['form'] = form
+    return render(request, 'form_with_verify_code.html', content)
 
 
+
+@login_required
+def change_password(request):      
+    if request.method == 'POST':
+        form = forms.ChangePasswordForm(request.POST, request=request)
+        if form.is_valid():
+            #更改密码
+            new_password = form.cleaned_data['new_password']
+            user = request.user
+            user.set_password(new_password)
+            user.save()
+            #注销当前用户
+            auth.logout(request)
+            #重定向到登陆，重新新密码登陆
+            return redirect(reverse('signin'))
+    else:
+        form = forms.ChangePasswordForm()
+
+    content = {}
+    content['form_title'] = '修改密码'
+    content['submit_text'] = '确定修改'
+    content['action_url'] = reverse('change_password')
+    content['form'] = form
+    return render(request, 'form_with_ok.html', content)
+
+
+@login_required
+def change_nickname(request):      
+    if request.method == 'POST':
+        form = forms.ChangeNicknameForm(request.POST)
+        if form.is_valid():
+            #不存用户扩展记录就创建一个新的
+            user_profile, is_create = models.UserProfile.objects.get_or_create(user=request.user)
+            user_profile.nickname = form.cleaned_data['nickname']
+            user_profile.save()
+            #重定向到
+            return redirect(reverse('userinfo'))
+    else:
+        form = forms.ChangeNicknameForm()
+
+    content = {}
+    content['form_title'] = '修改昵称'
+    content['submit_text'] = '确定修改'
+    content['action_url'] = reverse('change_nickname')
+    content['form'] = form
+    return render(request, 'form_with_ok.html', content)
 

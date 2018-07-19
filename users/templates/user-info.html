@@ -8,26 +8,35 @@
 
 {% block body %}
 	<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-offset-2 col-xs-12 col-sm-8">
-            <div class="jumbotron">
-                <h2 class="text-center">{{ user.username }}的资料</h2>
-                <br>
-                <p>注册时间：{{ user.date_joined }}</p>
+	<div class="row">
+		<div class="col-sm-offset-2 col-xs-12 col-sm-8">
+			<div class="jumbotron">
+				<h2 class="text-center">{{ user.username }}的资料</h2>
+				<br>
+				<p>注册时间：{{ user.date_joined }}</p>
 				<p>最后一次登陆时间：{{ user.last_login }}</p>
-                {% if user.email %}
-                    <p>
-                        <span>邮箱：{{ user.email }}</span><a class="btn pull-right" href="{% url 'changeemail' %}">变更邮箱</a>
-                    </p>
-                {% else %}
-                    <p>
-                        <span>邮箱：未绑定</span><a class="btn pull-right" href="{% url 'changeemail' %}">绑定邮箱</a>
-                    </p>
-                {% endif %}
+				<p>
+					{% if user.userprofile %}
+						<span>昵称：{{ user.userprofile.nickname }}</span>
+					{% else %}
+						<span>昵称：无</span>
+					{% endif %}
+					<a class="btn btn-info pull-right" href="{% url 'change_nickname' %}">修改昵称</a>
+				</p>
+				{% if user.email %}
+					<p>
+						<span>邮箱：{{ user.email }}</span><a class="btn btn-info pull-right" href="{% url 'changeemail' %}">变更邮箱</a>
+					</p>
+				{% else %}
+					<p>
+						<span>邮箱：未绑定</span><a class="btn btn-info pull-right" href="{% url 'changeemail' %}">绑定邮箱</a>
+					</p>
+				{% endif %}
+				<a class="btn btn-info" href="{% url 'change_password' %}">修改密码</a>
 
-            </div>
-        </div>
-    </div>
+			</div>
+		</div>
+	</div>
 </div>
 {% endblock %}
 
