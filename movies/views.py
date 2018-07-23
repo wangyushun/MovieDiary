@@ -95,6 +95,52 @@ def search(request):
     return render(request, 'movies_list.html', context)
 
 
+def tv_play(request):
+    '''
+    电视剧视图函数
+    '''
+    type = request.GET.get('type', None)
+    if type:
+        tvplays = models.TVPlay.objects.filter(movie_type=type).all()
+    else:
+        tvplays = models.TVPlay.objects.all()
+    context = get_movies_data(request, tvplays)
+    context['movie_type'] = models.MovieType.objects.all()
+    context['country'] = models.Country.objects.all()
+    return render(request, 'tv_list.html', context)
 
 
+def tv_detail(request, pk):
+    '''
+    电视剧详情视图
+    '''
+    context = {}
+    context['movie_type'] = models.MovieType.objects.all()
+    context['country'] = models.Country.objects.all()
+    context['movie'] = models.TVPlay.objects.filter(pk=pk).first()
+    context['comment_form'] = CommentForm(initial={'content_type': 'tvplay', 'object_id': pk})
+    content_type = ContentType.objects.get_for_model(models.TVPlay)
+    context['comments'] = Comment.objects.filter(content_type=content_type, object_id=pk).all()
+    return render(request, 'movie_detail.html', context)
+
+def tv_type(request, pk):
+    '''
+    类型分类电视剧列表视图
+    '''
+    movies = models.TVPlay.objects.filter(movie_type=pk).all()
+    context = get_movies_data(request, movies)
+    context['movie_type'] = models.MovieType.objects.all()
+    context['country'] = models.Country.objects.all()
+    
+    return render(request, 'tv_list.html', context)
+
+def tv_country(request, pk):
+    '''
+    制片国家或地区分类电视剧列表视图
+    '''
+    movies = models.TVPlay.objects.filter(producer_country=pk).all()
+    context = get_movies_data(request, movies)
+    context['movie_type'] = models.MovieType.objects.all()
+    context['country'] = models.Country.objects.all()   
+    return render(request, 'tv_list.html', context)
 

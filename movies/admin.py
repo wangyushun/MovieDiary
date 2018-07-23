@@ -39,6 +39,12 @@ class MovieAdmin(admin.ModelAdmin):
 class MovieLinesAdmin(admin.ModelAdmin):
     list_display = ('lines', 'provenance')
 
+
+class TVPlayAdmin(MovieAdmin):
+    list_display = MovieAdmin.list_display + ('season', 'episode_num')
+
+
 admin.site.register(models.Movie, MovieAdmin)
 admin.site.register(models.MovieLines, MovieLinesAdmin)
+admin.site.register(models.TVPlay, TVPlayAdmin)
 

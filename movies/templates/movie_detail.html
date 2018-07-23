@@ -51,7 +51,15 @@
                 {% endfor %}
             </p>
             <p>上映日期: {{ movie.release_date | date:'Y-m-d' }}({{ movie.release_country }})</p>
-            <p>片长: {{ movie.time_length }}分钟</p>
+            {% if movie.season >= 0 %}
+                {% if movie.season > 0 %}
+                    <p>季数：{{ movie.season }}</p>
+                {% endif %}
+                <p>集数：{{ movie.episode_num }}</p>
+                <p>单集片长: {{ movie.time_length }}分钟</p>
+            {% else %}
+                <p>片长: {{ movie.time_length }}分钟</p>
+            {% endif %}
         </div>
         <div class="col-xs-12 col-sm-4 col-md-4">
             <p><span class="label label-success">豆瓣评分:</span>{{ movie.grade }}</p>

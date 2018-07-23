@@ -10,4 +10,8 @@ urlpatterns = [
     path('country/<int:pk>', views.country, name='country'),
     path('search/', views.search, name='search'),
     path('rss/', rss.AllMoviesRssFeed(), name='rss'),
+    path('tv/', views.tv_play, name='tvplay'),
+    path('tv/<int:pk>', views.tv_detail, name='tv_detail'),
+    path('tv/type/<int:pk>', views.tv_type, name='tv_type'),
+    path('tv/country/<int:pk>', views.tv_country, name='tv_country'),
 ]
