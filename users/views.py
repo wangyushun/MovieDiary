@@ -23,7 +23,12 @@ def sign_in(request):
                 return redirect(url, args=[]) 
             signin_form.add_error(None, '用户未激活')
     else: 
-        request.session['signin_from'] = request.META.get('HTTP_REFERER', reverse('home'))  #保存登陆前的网页url        
+        #如果是从@login_required重定向来的会传入next参数，标记从哪url来得
+        next_url = request.GET.get('next', None)
+        if next_url:
+            request.session['signin_from'] = next_url
+        else:
+            request.session['signin_from'] = request.META.get('HTTP_REFERER', reverse('home'))  #保存登陆前的网页url        
         signin_form = forms.SignInForm()
 
     content = {}
@@ -114,6 +119,7 @@ def send_verify_code(request):
             data['statusText'] = '500 Send email faild'
         else:
             request.session[email] = code #以邮箱做key保存验证码，以防止提交更改时邮箱不一致
+            # request.session.set_expiry(60)#60s后失效
             data['statusCode'] = 200
             data['statusText'] = '200 OK'
             data['code'] = code
@@ -159,7 +165,7 @@ def change_password(request):
             #注销当前用户
             auth.logout(request)
             #重定向到登陆，重新新密码登陆
-            return redirect(reverse('signin'))
+            return redirect('{0}?next={1}'.format(reverse('signin'), reverse('userinfo')))
     else:
         form = forms.ChangePasswordForm()
 

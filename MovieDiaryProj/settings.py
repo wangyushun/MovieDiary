@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'b*ywn5enft=bq7-3d8x*u9bpy**dex*)*=gfaad1nxx0vx85%u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'wangyushun.pythonanywhere.com',
@@ -216,7 +216,7 @@ MOVIE_LIST_COUNT_PER_PAGE = 8
 
 #这一项是固定的
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# smtp服务的邮箱服务器 我用的是163
+# smtp服务的邮箱服务器 我用的是qq
 EMAIL_HOST = 'smtp.qq.com'
 # smtp服务固定的端口是25
 EMAIL_PORT = 25

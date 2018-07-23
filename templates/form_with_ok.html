@@ -17,12 +17,12 @@
                     <form method="POST" action="{{ action_url }}"> 
                         {% csrf_token %} 
                         {% for field in form %}
-                            {{ field.label_tag }} {{ field }}
                             <p class="text-danger">{{ field.errors.as_text }}</p>
+                            {{ field.label_tag }} {{ field }}
                         {% endfor %}
-                        <span id="tip_text" class="text-danger pull-left">{{ form.non_field_errors.as_text }}</span>
+                        <p id="tip_text" class="text-danger pull-left">{{ form.non_field_errors.as_text }}</p>
                         <div class="clearfix"></div>
-                        <button type="submit" class="btn btn-primary pull-right">{{ submit_text }}</button> 
+                        <button type="submit" class="btn btn-primary pull-right">{{ submit_text }}</button>
                     </form>
                     {% block form_extend %}{% endblock %}
                 </div>
