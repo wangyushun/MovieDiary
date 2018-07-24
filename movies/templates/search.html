@@ -1,0 +1,69 @@
+{% extends "movie_base.html" %}
+
+
+{% block title %}
+搜索结果
+{% endblock %}
+
+
+{% block context %}  
+<div class="row">
+    {# 主显示区 #}
+    <div class="col-sm-offset-1 col-xs-12 col-sm-8 main-content">
+        <div>
+            <p><strong>搜索结果</strong></p>
+            <hr>
+        </div>
+        <div>
+            <div>
+                <p><strong>电影</strong></p>
+                <hr>
+            </div>
+            {% for movie in movies %}
+            <div class="col-xs-6 col-sm-3 col-md-3">
+                <div class="thumbnail">
+                    {% if movie.poster %}
+                    <a href="{{ movie.get_detail_url }}">
+                        <img src="{{ movie.poster_thumbnail.url }}"  alt="海报">
+                    </a>
+                    {% endif %}
+                    <div class="caption">
+                        <a href="{{ movie.get_detail_url }}"><p style="overflow:hidden; white-space:nowrap; text-overflow:ellipsis;">{{ movie.name }}</p></a>
+                        <p><span class="glyphicon glyphicon-star" aria-hidden="true"></span> {{ movie.grade }}</p>    
+                    </div>
+                </div>           
+            </div>
+            {% empty %}
+            <div>
+                <p>无电影记录</p>
+            </div>
+            {% endfor %}
+        </div>  
+        <div>
+            <div>
+                <p><strong>电视剧</strong></p>
+                <hr>
+            </div>
+            {% for tv in tvs %}
+            <div class="col-xs-6 col-sm-3 col-md-3">
+                <div class="thumbnail">
+                    {% if tv.poster %}
+                    <a href="{{ tv.get_detail_url }}">
+                        <img src="{{ tv.poster_thumbnail.url }}"  alt="海报">
+                    </a>
+                    {% endif %}
+                    <div class="caption">
+                        <a href="{{ tv.get_detail_url }}"><p style="overflow:hidden; white-space:nowrap; text-overflow:ellipsis;">{{ tv.name }}</p></a>
+                        <p><span class="glyphicon glyphicon-star" aria-hidden="true"></span> {{ tv.grade }}</p>    
+                    </div>
+                </div>           
+            </div>
+            {% empty %}
+            <div>
+                <p>无电视剧记录</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>  
+{% endblock %}

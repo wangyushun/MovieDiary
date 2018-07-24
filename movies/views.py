@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse
 from django.core.paginator import Paginator
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
+
 from . import models
 from comments.forms import CommentForm
 from comments.models import Comment
@@ -70,7 +71,7 @@ def movie_type(request, pk):
     context = get_movies_data(request, movies)
     context['movie_type'] = models.MovieType.objects.all()
     context['country'] = models.Country.objects.all()
-    
+    context['category'] = models.MovieType.objects.filter(pk=pk).first()#当前分类
     return render(request, 'movies_list.html', context)
 
 def country(request, pk):
@@ -80,19 +81,21 @@ def country(request, pk):
     movies = models.Movie.objects.filter(producer_country=pk).all()
     context = get_movies_data(request, movies)
     context['movie_type'] = models.MovieType.objects.all()
-    context['country'] = models.Country.objects.all()   
+    context['country'] = models.Country.objects.all() 
+    context['category'] = models.Country.objects.filter(pk=pk).first()#当前分类  
     return render(request, 'movies_list.html', context)
 
 def search(request):
     '''
     搜索电影视图
     '''
+    context = {}
     search = request.POST.get('search', '')
     movies = models.Movie.objects.filter(name__icontains=search).all()
-    context = get_movies_data(request, movies)
-    context['movie_type'] = models.MovieType.objects.all()
-    context['country'] = models.Country.objects.all()
-    return render(request, 'movies_list.html', context)
+    context['movies'] = movies
+    tvs = models.TVPlay.objects.filter(name__icontains=search).all()
+    context['tvs'] = tvs
+    return render(request, 'search.html', context)
 
 
 def tv_play(request):
@@ -128,10 +131,11 @@ def tv_type(request, pk):
     类型分类电视剧列表视图
     '''
     movies = models.TVPlay.objects.filter(movie_type=pk).all()
+    print(movies[0].get_detail_url())
     context = get_movies_data(request, movies)
     context['movie_type'] = models.MovieType.objects.all()
     context['country'] = models.Country.objects.all()
-    
+    context['category'] = models.MovieType.objects.filter(pk=pk).first()#当前分类
     return render(request, 'tv_list.html', context)
 
 def tv_country(request, pk):
@@ -141,6 +145,7 @@ def tv_country(request, pk):
     movies = models.TVPlay.objects.filter(producer_country=pk).all()
     context = get_movies_data(request, movies)
     context['movie_type'] = models.MovieType.objects.all()
-    context['country'] = models.Country.objects.all()   
+    context['country'] = models.Country.objects.all() 
+    context['category'] = models.Country.objects.filter(pk=pk).first()#当前分类  
     return render(request, 'tv_list.html', context)
 

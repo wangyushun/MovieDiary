@@ -10,7 +10,15 @@
 <div class="row">
     {# 主显示区 #}
     <div class="col-sm-offset-1 col-xs-12 col-sm-8 main-content">
-        <div>
+        <div>           
+            <div>
+                <p><strong>电视剧</strong></p>
+                {% if category %}
+                    <p>标签：<span class="glyphicon glyphicon-tags" aria-hidden="true"></span>{{ category.name }}</p>
+                {% endif %}
+                <hr>
+            </div>
+            
             {% for movie in movies %}
             <div class="col-xs-6 col-sm-3 col-md-3">
                 <div class="thumbnail">
@@ -20,7 +28,13 @@
                     </a>
                     {% endif %}
                     <div class="caption">
-                        <a href="{% url 'tv_detail' movie.pk %}"><p style="overflow:hidden; white-space:nowrap; text-overflow:ellipsis;">{{ movie.name }}</p></a>
+                        <a href="{% url 'tv_detail' movie.pk %}">
+                            {% if movie.season > 0 %}
+                                <p style="overflow:hidden; white-space:nowrap; text-overflow:ellipsis;">{{ movie.name }} 第{{ movie.season }}季</p>
+                            {% else %}
+                                <p style="overflow:hidden; white-space:nowrap; text-overflow:ellipsis;">{{ movie.name }}</p>
+                            {% endif %}
+                        </a>
                         <p><span class="glyphicon glyphicon-star" aria-hidden="true"></span> {{ movie.grade }}</p>    
                     </div>
                 </div>           

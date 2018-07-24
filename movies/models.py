@@ -1,6 +1,8 @@
 from django.db import models
 from django.core import validators
 from django.utils import timezone
+from django.urls import reverse, NoReverseMatch
+
 #from ckeditor.fields import RichTextField 
 from ckeditor_uploader.fields import RichTextUploadingField
 from imagekit.models import ImageSpecField
@@ -88,6 +90,15 @@ class Movie(models.Model):
     def __str__(self):
         return '<Movie>:{0}'.format(self.name)
 
+    def get_detail_url(self):
+        try:
+            url = reverse('movie')
+        except NoReverseMatch:
+            url = None 
+        else:
+            url = url + str(self.pk)
+        return url
+
     class Meta:
         ordering = ['-create_datetime']#按日期倒序排序
         verbose_name = '电影'
@@ -137,6 +148,15 @@ class TVPlay(models.Model):
 
     def __str__(self):
         return '<TVPlay>:{0}'.format(self.name)
+
+    def get_detail_url(self):
+        try:
+            url = reverse('tvplay')
+        except NoReverseMatch:
+            url = None 
+        else:
+            url = url + str(self.pk)
+        return url
 
     class Meta:
         ordering = ['-create_datetime']#按日期倒序排序

@@ -11,6 +11,13 @@
     {# 主显示区 #}
     <div class="col-sm-offset-1 col-xs-12 col-sm-8 main-content">
         <div>
+            <div>
+                <p><strong>电影</strong></p>
+                {% if category %}
+                    <p>标签：<span class="glyphicon glyphicon-tags" aria-hidden="true"></span>{{ category.name }}</p>
+                {% endif %}
+                <hr>
+            </div>
             {% for movie in movies %}
             <div class="col-xs-6 col-sm-3 col-md-3">
                 <div class="thumbnail">
