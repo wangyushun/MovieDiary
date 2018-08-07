@@ -91,10 +91,15 @@ def search(request):
     '''
     context = {}
     search = request.POST.get('search', '')
-    movies = models.Movie.objects.filter(name__icontains=search).all()
-    context['movies'] = movies
-    tvs = models.TVPlay.objects.filter(name__icontains=search).all()
-    context['tvs'] = tvs
+    if search == '':
+        context['movies'] = []
+        context['tvs'] = []
+    else:
+        movies = models.Movie.objects.filter(name__icontains=search).all()
+        context['movies'] = movies
+        tvs = models.TVPlay.objects.filter(name__icontains=search).all()
+        context['tvs'] = tvs
+    context['search'] = search
     return render(request, 'search.html', context)
 
 
@@ -131,7 +136,6 @@ def tv_type(request, pk):
     类型分类电视剧列表视图
     '''
     movies = models.TVPlay.objects.filter(movie_type=pk).all()
-    print(movies[0].get_detail_url())
     context = get_movies_data(request, movies)
     context['movie_type'] = models.MovieType.objects.all()
     context['country'] = models.Country.objects.all()
