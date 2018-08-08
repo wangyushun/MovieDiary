@@ -27,7 +27,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     'wangyushun.pythonanywhere.com',
-    '127.0.0.1',
+    '*',
     'localhost'
     ]
 
@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'MovieDiaryProj.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
-    'sqlite3': {
+    'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     },
@@ -103,13 +103,13 @@ DATABASES = {
     #     'PORT': '3306',         # 数据库使用的端口
     # },
     # PythonAnywhere上mysql配置
-    'default' : { 
-        'ENGINE' : 'django.db.backends.mysql',
-        'NAME' : 'wangyushun$mydata',
-        'USER' : 'wangyushun' ,
-        'PASSWORD' : 'wys666666' ,
-        'HOST' : 'wangyushun.mysql.pythonanywhere-services.com' ,
-    }
+    # 'default' : { 
+    #     'ENGINE' : 'django.db.backends.mysql',
+    #     'NAME' : 'wangyushun$mydata',
+    #     'USER' : 'wangyushun' ,
+    #     'PASSWORD' : 'wys666666' ,
+    #     'HOST' : 'wangyushun.mysql.pythonanywhere-services.com' ,
+    # }
 }
 
 

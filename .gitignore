@@ -4,4 +4,5 @@
 !/media/logo/
 *__pycache__/
 *.pyc
+/collect_static/
 

@@ -1,0 +1,588 @@
+*** Starting uWSGI 2.0.17.1 (64bit) on [Wed Aug  8 09:35:12 2018] ***
+compiled with version: 7.3.0 on 08 August 2018 00:56:19
+os: Linux-4.15.0-30-generic #32-Ubuntu SMP Thu Jul 26 17:42:43 UTC 2018
+nodename: shun-VirtualBox
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /home/shun/work/MovieDiary
+writing pidfile to uwsgi.pid
+detected binary path: /home/shun/work/pyenv/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+chdir() to /home/shun/work/MovieDiary
+your processes number limit is 7371
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on 0:8080 fd 4
+uwsgi socket 0 bound to TCP address 127.0.0.1:43377 (port auto-assigned) fd 3
+Python version: 3.6.5 (default, Apr  1 2018, 05:46:30)  [GCC 7.3.0]
+Python main interpreter initialized at 0x55acec520790
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 583408 bytes (569 KB) for 12 cores
+*** Operational MODE: preforking+threaded ***
+WSGI app 0 (mountpoint='') ready in 3 seconds on interpreter 0x55acec520790 pid: 24921 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 24921)
+spawned uWSGI worker 1 (pid: 24929, cores: 2)
+spawned uWSGI worker 2 (pid: 24930, cores: 2)
+spawned uWSGI worker 3 (pid: 24931, cores: 2)
+spawned uWSGI worker 4 (pid: 24933, cores: 2)
+spawned uWSGI worker 5 (pid: 24937, cores: 2)
+spawned uWSGI worker 6 (pid: 24938, cores: 2)
+spawned uWSGI http 1 (pid: 24939)
+[pid: 24938|app: 0|req: 1/1] 127.0.0.1 () {38 vars in 650 bytes} [Wed Aug  8 09:36:53 2018] GET / => generated 3630 bytes in 1844 msecs (HTTP/1.1 200) 5 headers in 278 bytes (1 switches on core 0)
+Not Found: /static/bootstrap-3.3.7/css/bootstrap.min.css
+[pid: 24938|app: 0|req: 2/2] 127.0.0.1 () {38 vars in 696 bytes} [Wed Aug  8 09:36:55 2018] GET /static/bootstrap-3.3.7/css/bootstrap.min.css => generated 3076 bytes in 131 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 1)
+Not Found: /static/bootstrap-3.3.7/js/bootstrap.min.js
+Not Found: /static/jquery-1.12.4/jquery.min.js
+[pid: 24937|app: 0|req: 2/3] 127.0.0.1 () {38 vars in 661 bytes} [Wed Aug  8 09:36:55 2018] GET /static/jquery-1.12.4/jquery.min.js => generated 3046 bytes in 1291 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 24937|app: 0|req: 2/4] 127.0.0.1 () {38 vars in 677 bytes} [Wed Aug  8 09:36:55 2018] GET /static/bootstrap-3.3.7/js/bootstrap.min.js => generated 3070 bytes in 1259 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 1)
+Not Found: /static/bootstrap-3.3.7/js/bootstrap.min.js
+[pid: 24938|app: 0|req: 3/5] 127.0.0.1 () {38 vars in 677 bytes} [Wed Aug  8 09:36:56 2018] GET /static/bootstrap-3.3.7/js/bootstrap.min.js => generated 3070 bytes in 36 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /favicon.ico
+[pid: 24938|app: 0|req: 4/6] 127.0.0.1 () {36 vars in 637 bytes} [Wed Aug  8 09:36:57 2018] GET /favicon.ico => generated 2977 bytes in 39 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 1)
+Not Found: /favicon.ico
+[pid: 24938|app: 0|req: 5/7] 127.0.0.1 () {36 vars in 577 bytes} [Wed Aug  8 09:36:57 2018] GET /favicon.ico => generated 2977 bytes in 54 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+SIGINT/SIGQUIT received...killing workers...
+gateway "uWSGI http 1" has been buried (pid: 24939)
+worker 1 buried after 3 seconds
+worker 2 buried after 3 seconds
+worker 3 buried after 3 seconds
+worker 4 buried after 3 seconds
+worker 5 buried after 3 seconds
+worker 6 buried after 3 seconds
+goodbye to uWSGI.
+VACUUM: pidfile removed.
+*** Starting uWSGI 2.0.17.1 (64bit) on [Wed Aug  8 09:49:04 2018] ***
+compiled with version: 7.3.0 on 08 August 2018 00:56:19
+os: Linux-4.15.0-30-generic #32-Ubuntu SMP Thu Jul 26 17:42:43 UTC 2018
+nodename: shun-VirtualBox
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /home/shun/work/MovieDiary
+writing pidfile to uwsgi.pid
+detected binary path: /home/shun/work/pyenv/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+chdir() to /home/shun/work/MovieDiary
+your processes number limit is 7371
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on 0:8080 fd 4
+uwsgi socket 0 bound to TCP address 127.0.0.1:44389 (port auto-assigned) fd 3
+Python version: 3.6.5 (default, Apr  1 2018, 05:46:30)  [GCC 7.3.0]
+Python main interpreter initialized at 0x558864a77790
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 583408 bytes (569 KB) for 12 cores
+*** Operational MODE: preforking+threaded ***
+WSGI app 0 (mountpoint='') ready in 3 seconds on interpreter 0x558864a77790 pid: 25144 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 25144)
+spawned uWSGI worker 1 (pid: 25152, cores: 2)
+spawned uWSGI worker 2 (pid: 25153, cores: 2)
+spawned uWSGI worker 3 (pid: 25156, cores: 2)
+spawned uWSGI worker 4 (pid: 25157, cores: 2)
+spawned uWSGI worker 5 (pid: 25160, cores: 2)
+spawned uWSGI worker 6 (pid: 25162, cores: 2)
+spawned uWSGI http 1 (pid: 25163)
+SIGINT/SIGQUIT received...killing workers...
+gateway "uWSGI http 1" has been buried (pid: 25163)
+worker 1 buried after 2 seconds
+worker 2 buried after 2 seconds
+worker 3 buried after 2 seconds
+worker 4 buried after 2 seconds
+worker 5 buried after 2 seconds
+worker 6 buried after 2 seconds
+goodbye to uWSGI.
+VACUUM: pidfile removed.
+*** Starting uWSGI 2.0.17.1 (64bit) on [Wed Aug  8 10:09:30 2018] ***
+compiled with version: 7.3.0 on 08 August 2018 00:56:19
+os: Linux-4.15.0-30-generic #32-Ubuntu SMP Thu Jul 26 17:42:43 UTC 2018
+nodename: shun-VirtualBox
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /home/shun/work/MovieDiary
+writing pidfile to uwsgi.pid
+detected binary path: /home/shun/work/pyenv/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+chdir() to /home/shun/work/MovieDiary
+your processes number limit is 7371
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on 0:8080 fd 3
+uwsgi socket 0 bound to UNIX address /home/shun/work/MovieDiary/mysite.sock fd 6
+Python version: 3.6.5 (default, Apr  1 2018, 05:46:30)  [GCC 7.3.0]
+Python main interpreter initialized at 0x555a38e00780
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 583408 bytes (569 KB) for 12 cores
+*** Operational MODE: preforking+threaded ***
+WSGI app 0 (mountpoint='') ready in 3 seconds on interpreter 0x555a38e00780 pid: 25281 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 25281)
+spawned uWSGI worker 1 (pid: 25290, cores: 2)
+spawned uWSGI worker 2 (pid: 25291, cores: 2)
+spawned uWSGI worker 3 (pid: 25292, cores: 2)
+spawned uWSGI worker 4 (pid: 25293, cores: 2)
+spawned uWSGI worker 5 (pid: 25297, cores: 2)
+spawned uWSGI worker 6 (pid: 25300, cores: 2)
+spawned uWSGI http 1 (pid: 25302)
+[pid: 25300|app: 0|req: 1/1] 127.0.0.1 () {40 vars in 681 bytes} [Wed Aug  8 10:09:40 2018] GET / => generated 3630 bytes in 2014 msecs (HTTP/1.1 200) 5 headers in 278 bytes (2 switches on core 0)
+Not Found: /static/bootstrap-3.3.7/css/bootstrap.min.css
+[pid: 25300|app: 0|req: 3/2] 127.0.0.1 () {40 vars in 727 bytes} [Wed Aug  8 10:09:42 2018] GET /static/bootstrap-3.3.7/css/bootstrap.min.css => generated 3076 bytes in 121 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 1)
+Not Found: /static/jquery-1.12.4/jquery.min.js
+[pid: 25300|app: 0|req: 3/3] 127.0.0.1 () {40 vars in 692 bytes} [Wed Aug  8 10:09:42 2018] GET /static/jquery-1.12.4/jquery.min.js => generated 3046 bytes in 109 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /static/bootstrap-3.3.7/js/bootstrap.min.js
+[pid: 25293|app: 0|req: 1/4] 127.0.0.1 () {40 vars in 708 bytes} [Wed Aug  8 10:09:42 2018] GET /static/bootstrap-3.3.7/js/bootstrap.min.js => generated 3070 bytes in 1149 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+SIGINT/SIGQUIT received...killing workers...
+gateway "uWSGI http 1" has been buried (pid: 25302)
+worker 1 buried after 4 seconds
+worker 2 buried after 4 seconds
+worker 3 buried after 4 seconds
+worker 4 buried after 4 seconds
+worker 5 buried after 4 seconds
+worker 6 buried after 4 seconds
+goodbye to uWSGI.
+VACUUM: pidfile removed.
+VACUUM: unix socket /home/shun/work/MovieDiary/mysite.sock removed.
+*** Starting uWSGI 2.0.17.1 (64bit) on [Wed Aug  8 10:31:41 2018] ***
+compiled with version: 7.3.0 on 08 August 2018 00:56:19
+os: Linux-4.15.0-30-generic #32-Ubuntu SMP Thu Jul 26 17:42:43 UTC 2018
+nodename: shun-VirtualBox
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /home/shun/work/MovieDiary
+writing pidfile to uwsgi.pid
+detected binary path: /home/shun/work/pyenv/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+chdir() to /home/shun/work/MovieDiary
+your processes number limit is 7371
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address 0:8001 fd 3
+uwsgi socket 1 bound to UNIX address /home/shun/work/MovieDiary/mysite.sock fd 4
+Python version: 3.6.5 (default, Apr  1 2018, 05:46:30)  [GCC 7.3.0]
+Python main interpreter initialized at 0x56179a617860
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 583408 bytes (569 KB) for 12 cores
+*** Operational MODE: preforking+threaded ***
+WSGI app 0 (mountpoint='') ready in 2 seconds on interpreter 0x56179a617860 pid: 25458 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 25458)
+spawned uWSGI worker 1 (pid: 25466, cores: 2)
+spawned uWSGI worker 2 (pid: 25467, cores: 2)
+spawned uWSGI worker 3 (pid: 25468, cores: 2)
+spawned uWSGI worker 4 (pid: 25472, cores: 2)
+spawned uWSGI worker 5 (pid: 25474, cores: 2)
+spawned uWSGI worker 6 (pid: 25475, cores: 2)
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+invalid request block size: 21573 (max 4096)...skip
+*** Starting uWSGI 2.0.17.1 (64bit) on [Wed Aug  8 10:32:48 2018] ***
+compiled with version: 7.3.0 on 08 August 2018 00:56:19
+os: Linux-4.15.0-30-generic #32-Ubuntu SMP Thu Jul 26 17:42:43 UTC 2018
+nodename: shun-VirtualBox
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /home/shun/work/MovieDiary
+writing pidfile to uwsgi.pid
+detected binary path: /home/shun/work/pyenv/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+chdir() to /home/shun/work/MovieDiary
+your processes number limit is 7371
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on 0:8080 fd 3
+uwsgi socket 0 bound to UNIX address /home/shun/work/MovieDiary/mysite.sock fd 6
+Python version: 3.6.5 (default, Apr  1 2018, 05:46:30)  [GCC 7.3.0]
+Python main interpreter initialized at 0x5648493fc780
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 583408 bytes (569 KB) for 12 cores
+*** Operational MODE: preforking+threaded ***
+WSGI app 0 (mountpoint='') ready in 2 seconds on interpreter 0x5648493fc780 pid: 25494 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 25494)
+spawned uWSGI worker 1 (pid: 25502, cores: 2)
+spawned uWSGI worker 2 (pid: 25503, cores: 2)
+spawned uWSGI worker 3 (pid: 25504, cores: 2)
+spawned uWSGI worker 4 (pid: 25505, cores: 2)
+spawned uWSGI worker 5 (pid: 25508, cores: 2)
+spawned uWSGI worker 6 (pid: 25511, cores: 2)
+spawned uWSGI http 1 (pid: 25514)
+[pid: 25508|app: 0|req: 1/1] 127.0.0.1 () {38 vars in 650 bytes} [Wed Aug  8 10:33:00 2018] GET / => generated 3630 bytes in 1648 msecs (HTTP/1.1 200) 5 headers in 278 bytes (2 switches on core 0)
+Not Found: /static/bootstrap-3.3.7/css/bootstrap.min.css
+[pid: 25508|app: 0|req: 2/2] 127.0.0.1 () {38 vars in 696 bytes} [Wed Aug  8 10:33:01 2018] GET /static/bootstrap-3.3.7/css/bootstrap.min.css => generated 3076 bytes in 140 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 1)
+Not Found: /static/jquery-1.12.4/jquery.min.js
+[pid: 25511|app: 0|req: 1/3] 127.0.0.1 () {38 vars in 661 bytes} [Wed Aug  8 10:33:01 2018] GET /static/jquery-1.12.4/jquery.min.js => generated 3046 bytes in 2854 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /static/bootstrap-3.3.7/js/bootstrap.min.js
+[pid: 25503|app: 0|req: 1/4] 127.0.0.1 () {38 vars in 677 bytes} [Wed Aug  8 10:33:01 2018] GET /static/bootstrap-3.3.7/js/bootstrap.min.js => generated 3070 bytes in 2856 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+*** Starting uWSGI 2.0.17.1 (64bit) on [Wed Aug  8 10:33:52 2018] ***
+compiled with version: 7.3.0 on 08 August 2018 00:56:19
+os: Linux-4.15.0-30-generic #32-Ubuntu SMP Thu Jul 26 17:42:43 UTC 2018
+nodename: shun-VirtualBox
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /home/shun/work/MovieDiary
+writing pidfile to uwsgi.pid
+detected binary path: /home/shun/work/pyenv/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+chdir() to /home/shun/work/MovieDiary
+your processes number limit is 7371
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+probably another instance of uWSGI is running on the same address (0:8000).
+bind(): Address already in use [core/socket.c line 769]
+[pid: 25511|app: 0|req: 2/5] 127.0.0.1 () {40 vars in 681 bytes} [Wed Aug  8 10:34:00 2018] GET / => generated 3630 bytes in 413 msecs (HTTP/1.1 200) 5 headers in 278 bytes (1 switches on core 1)
+Not Found: /static/bootstrap-3.3.7/css/bootstrap.min.css
+[pid: 25511|app: 0|req: 4/6] 127.0.0.1 () {40 vars in 727 bytes} [Wed Aug  8 10:34:01 2018] GET /static/bootstrap-3.3.7/css/bootstrap.min.css => generated 3076 bytes in 76 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /static/bootstrap-3.3.7/js/bootstrap.min.js
+[pid: 25508|app: 0|req: 3/7] 127.0.0.1 () {40 vars in 708 bytes} [Wed Aug  8 10:34:01 2018] GET /static/bootstrap-3.3.7/js/bootstrap.min.js => generated 3070 bytes in 72 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /static/jquery-1.12.4/jquery.min.js
+[pid: 25511|app: 0|req: 4/8] 127.0.0.1 () {40 vars in 692 bytes} [Wed Aug  8 10:34:01 2018] GET /static/jquery-1.12.4/jquery.min.js => generated 3046 bytes in 94 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 1)
+Not Found: /static/bootstrap-3.3.7/js/bootstrap.min.js
+[pid: 25508|app: 0|req: 4/9] 127.0.0.1 () {40 vars in 708 bytes} [Wed Aug  8 10:34:01 2018] GET /static/bootstrap-3.3.7/js/bootstrap.min.js => generated 3070 bytes in 37 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 1)
+[pid: 25511|app: 0|req: 5/10] 127.0.0.1 () {40 vars in 681 bytes} [Wed Aug  8 10:34:07 2018] GET / => generated 3630 bytes in 58 msecs (HTTP/1.1 200) 5 headers in 278 bytes (1 switches on core 0)
+Not Found: /static/bootstrap-3.3.7/css/bootstrap.min.css
+[pid: 25511|app: 0|req: 7/11] 127.0.0.1 () {40 vars in 727 bytes} [Wed Aug  8 10:34:07 2018] GET /static/bootstrap-3.3.7/css/bootstrap.min.css => generated 3076 bytes in 114 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 1)
+Not Found: /static/bootstrap-3.3.7/js/bootstrap.min.js
+Not Found: /static/jquery-1.12.4/jquery.min.js
+[pid: 25511|app: 0|req: 7/12] 127.0.0.1 () {40 vars in 692 bytes} [Wed Aug  8 10:34:07 2018] GET /static/jquery-1.12.4/jquery.min.js => generated 3046 bytes in 118 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+[pid: 25508|app: 0|req: 5/13] 127.0.0.1 () {40 vars in 708 bytes} [Wed Aug  8 10:34:07 2018] GET /static/bootstrap-3.3.7/js/bootstrap.min.js => generated 3070 bytes in 119 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 0)
+Not Found: /static/bootstrap-3.3.7/js/bootstrap.min.js
+[pid: 25511|app: 0|req: 8/14] 127.0.0.1 () {40 vars in 708 bytes} [Wed Aug  8 10:34:08 2018] GET /static/bootstrap-3.3.7/js/bootstrap.min.js => generated 3070 bytes in 37 msecs (HTTP/1.1 404) 3 headers in 102 bytes (1 switches on core 1)
+[pid: 25475|app: 0|req: 1/1] 127.0.0.1 () {42 vars in 705 bytes} [Wed Aug  8 10:34:17 2018] GET / => generated 3630 bytes in 2070 msecs (HTTP/1.1 200) 5 headers in 278 bytes (1 switches on core 0)
+[pid: 25475|app: 0|req: 2/2] 127.0.0.1 () {44 vars in 755 bytes} [Wed Aug  8 10:34:34 2018] GET /movie/ => generated 3965 bytes in 232 msecs (HTTP/1.1 200) 5 headers in 278 bytes (1 switches on core 1)
+[pid: 25475|app: 0|req: 3/3] 127.0.0.1 () {46 vars in 786 bytes} [Wed Aug  8 10:39:43 2018] GET /movie/ => generated 3965 bytes in 121 msecs (HTTP/1.1 200) 5 headers in 278 bytes (1 switches on core 0)
+[pid: 25475|app: 0|req: 4/4] 127.0.0.1 () {42 vars in 705 bytes} [Wed Aug  8 10:39:52 2018] GET / => generated 3630 bytes in 49 msecs (HTTP/1.1 200) 5 headers in 278 bytes (1 switches on core 1)
+respawned uWSGI http 1 (pid: 25597)
+DAMN ! worker 5 (pid: 25508) died :( trying respawn ...
+Respawned uWSGI worker 5 (new pid: 25602)
+DAMN ! worker 6 (pid: 25511) died :( trying respawn ...
+Respawned uWSGI worker 6 (new pid: 25603)
+DAMN ! worker 4 (pid: 25505) died :( trying respawn ...
+Respawned uWSGI worker 4 (new pid: 25608)
+DAMN ! worker 2 (pid: 25503) died :( trying respawn ...
+Respawned uWSGI worker 2 (new pid: 25613)
+DAMN ! worker 3 (pid: 25504) died :( trying respawn ...
+Respawned uWSGI worker 3 (new pid: 25614)
+[pid: 25614|app: 0|req: 1/15] 127.0.0.1 () {44 vars in 736 bytes} [Wed Aug  8 10:48:14 2018] GET / => generated 3630 bytes in 1717 msecs (HTTP/1.1 200) 5 headers in 278 bytes (1 switches on core 0)
+...brutally killing workers...
+Gracefully killing worker 3 (pid: 25468)...
+Gracefully killing worker 2 (pid: 25467)...
+gateway "uWSGI http 1" has been buried (pid: 25597)
+...brutally killing workers...
+Gracefully killing worker 1 (pid: 25466)...
+Gracefully killing worker 4 (pid: 25472)...
+worker 1 buried after 2 seconds
+worker 4 buried after 2 seconds
+worker 1 buried after 6 seconds
+worker 5 buried after 6 seconds
+worker 6 buried after 6 seconds
+worker 4 buried after 6 seconds
+worker 2 buried after 6 seconds
+worker 3 buried after 6 seconds
+binary reloading uWSGI...
+chdir() to /home/shun/work/MovieDiary
+closing all non-uwsgi socket fds > 2 (max_fd = 1024)...
+found fd 6 mapped to socket 0 (/home/shun/work/MovieDiary/mysite.sock)
+running /home/shun/work/pyenv/bin/uwsgi
+[uWSGI] getting INI configuration from uwsgi.ini
+*** Starting uWSGI 2.0.17.1 (64bit) on [Wed Aug  8 10:51:04 2018] ***
+compiled with version: 7.3.0 on 08 August 2018 00:56:19
+os: Linux-4.15.0-30-generic #32-Ubuntu SMP Thu Jul 26 17:42:43 UTC 2018
+nodename: shun-VirtualBox
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /home/shun/work/MovieDiary
+detected binary path: /home/shun/work/pyenv/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+chdir() to /home/shun/work/MovieDiary
+your processes number limit is 7371
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on 0:8000 fd 3
+uwsgi socket 0 inherited UNIX address /home/shun/work/MovieDiary/mysite.sock fd 6
+Python version: 3.6.5 (default, Apr  1 2018, 05:46:30)  [GCC 7.3.0]
+worker 2 buried after 6 seconds
+worker 3 buried after 6 seconds
+worker 5 buried after 6 seconds
+worker 6 buried after 6 seconds
+binary reloading uWSGI...
+chdir() to /home/shun/work/MovieDiary
+closing all non-uwsgi socket fds > 2 (max_fd = 1024)...
+found fd 3 mapped to socket 0 (0:8001)
+found fd 4 mapped to socket 1 (/home/shun/work/MovieDiary/mysite.sock)
+running /home/shun/work/pyenv/bin/uwsgi
+[uWSGI] getting INI configuration from uwsgi.ini
+*** Starting uWSGI 2.0.17.1 (64bit) on [Wed Aug  8 10:51:04 2018] ***
+compiled with version: 7.3.0 on 08 August 2018 00:56:19
+os: Linux-4.15.0-30-generic #32-Ubuntu SMP Thu Jul 26 17:42:43 UTC 2018
+nodename: shun-VirtualBox
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /home/shun/work/MovieDiary
+detected binary path: /home/shun/work/pyenv/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+chdir() to /home/shun/work/MovieDiary
+your processes number limit is 7371
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+probably another instance of uWSGI is running on the same address (0:8000).
+bind(): Address already in use [core/socket.c line 769]
+VACUUM: pidfile removed.
+Python main interpreter initialized at 0x556866d8c6f0
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 583408 bytes (569 KB) for 12 cores
+*** Operational MODE: preforking+threaded ***
+WSGI app 0 (mountpoint='') ready in 4 seconds on interpreter 0x556866d8c6f0 pid: 25494 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 25494)
+spawned uWSGI worker 1 (pid: 25718, cores: 2)
+spawned uWSGI worker 2 (pid: 25719, cores: 2)
+spawned uWSGI worker 3 (pid: 25722, cores: 2)
+spawned uWSGI worker 4 (pid: 25723, cores: 2)
+spawned uWSGI worker 5 (pid: 25726, cores: 2)
+spawned uWSGI worker 6 (pid: 25728, cores: 2)
+spawned uWSGI http 1 (pid: 25729)
+*** Starting uWSGI 2.0.17.1 (64bit) on [Wed Aug  8 11:03:56 2018] ***
+compiled with version: 7.3.0 on 08 August 2018 00:56:19
+os: Linux-4.15.0-30-generic #32-Ubuntu SMP Thu Jul 26 17:42:43 UTC 2018
+nodename: shun-VirtualBox
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /home/shun/work/MovieDiary
+writing pidfile to uwsgi.pid
+detected binary path: /home/shun/work/pyenv/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+chdir() to /home/shun/work/MovieDiary
+your processes number limit is 7371
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+probably another instance of uWSGI is running on the same address (0:8000).
+bind(): Address already in use [core/socket.c line 769]
+*** Starting uWSGI 2.0.17.1 (64bit) on [Wed Aug  8 11:09:00 2018] ***
+compiled with version: 7.3.0 on 08 August 2018 00:56:19
+os: Linux-4.15.0-30-generic #32-Ubuntu SMP Thu Jul 26 17:42:43 UTC 2018
+nodename: shun-VirtualBox
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /home/shun/work/MovieDiary
+writing pidfile to uwsgi.pid
+detected binary path: /home/shun/work/pyenv/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+chdir() to /home/shun/work/MovieDiary
+your processes number limit is 7371
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /home/shun/work/MovieDiary/mysite.sock fd 3
+Python version: 3.6.5 (default, Apr  1 2018, 05:46:30)  [GCC 7.3.0]
+Python main interpreter initialized at 0x5632ebb5cae0
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 583408 bytes (569 KB) for 12 cores
+*** Operational MODE: preforking+threaded ***
+WSGI app 0 (mountpoint='') ready in 25 seconds on interpreter 0x5632ebb5cae0 pid: 2030 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 2030)
+spawned uWSGI worker 1 (pid: 2038, cores: 2)
+spawned uWSGI worker 2 (pid: 2039, cores: 2)
+spawned uWSGI worker 3 (pid: 2041, cores: 2)
+spawned uWSGI worker 4 (pid: 2044, cores: 2)
+spawned uWSGI worker 5 (pid: 2046, cores: 2)
+spawned uWSGI worker 6 (pid: 2048, cores: 2)
+[pid: 2038|app: 0|req: 1/1] 127.0.0.1 () {44 vars in 736 bytes} [Wed Aug  8 11:09:25 2018] GET / => generated 3603 bytes in 3641 msecs (HTTP/1.1 200) 5 headers in 278 bytes (1 switches on core 0)
+[pid: 2048|app: 0|req: 1/2] 127.0.0.1 () {44 vars in 736 bytes} [Wed Aug  8 11:09:36 2018] GET / => generated 3603 bytes in 1701 msecs (HTTP/1.1 200) 5 headers in 278 bytes (1 switches on core 0)
+SIGINT/SIGQUIT received...killing workers...
+worker 1 buried after 3 seconds
+worker 2 buried after 3 seconds
+worker 3 buried after 3 seconds
+worker 4 buried after 3 seconds
+worker 5 buried after 3 seconds
+worker 6 buried after 3 seconds
+goodbye to uWSGI.
+VACUUM: pidfile removed.
+VACUUM: unix socket /home/shun/work/MovieDiary/mysite.sock removed.
+*** Starting uWSGI 2.0.17.1 (64bit) on [Wed Aug  8 11:11:20 2018] ***
+compiled with version: 7.3.0 on 08 August 2018 00:56:19
+os: Linux-4.15.0-30-generic #32-Ubuntu SMP Thu Jul 26 17:42:43 UTC 2018
+nodename: shun-VirtualBox
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /home/shun/work/MovieDiary
+writing pidfile to uwsgi.pid
+detected binary path: /home/shun/work/pyenv/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+chdir() to /home/shun/work/MovieDiary
+your processes number limit is 7371
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /home/shun/work/MovieDiary/mysite.sock fd 3
+Python version: 3.6.5 (default, Apr  1 2018, 05:46:30)  [GCC 7.3.0]
+Python main interpreter initialized at 0x560cc560eae0
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 583408 bytes (569 KB) for 12 cores
+*** Operational MODE: preforking+threaded ***
+WSGI app 0 (mountpoint='') ready in 6 seconds on interpreter 0x560cc560eae0 pid: 2083 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 2083)
+spawned uWSGI worker 1 (pid: 2093, cores: 2)
+spawned uWSGI worker 2 (pid: 2094, cores: 2)
+spawned uWSGI worker 3 (pid: 2097, cores: 2)
+spawned uWSGI worker 4 (pid: 2099, cores: 2)
+spawned uWSGI worker 5 (pid: 2101, cores: 2)
+spawned uWSGI worker 6 (pid: 2102, cores: 2)
+[pid: 2101|app: 0|req: 1/1] 127.0.0.1 () {44 vars in 736 bytes} [Wed Aug  8 11:11:28 2018] GET / => generated 3603 bytes in 1801 msecs (HTTP/1.1 200) 5 headers in 278 bytes (1 switches on core 0)
+[pid: 2101|app: 0|req: 2/2] 127.0.0.1 () {44 vars in 755 bytes} [Wed Aug  8 11:11:39 2018] GET /about/ => generated 4049 bytes in 53 msecs (HTTP/1.1 200) 5 headers in 278 bytes (1 switches on core 1)
+SIGINT/SIGQUIT received...killing workers...
+worker 1 buried after 4 seconds
+worker 2 buried after 3 seconds
+worker 3 buried after 3 seconds
+worker 4 buried after 3 seconds
+worker 5 buried after 3 seconds
+worker 6 buried after 3 seconds
+goodbye to uWSGI.
+VACUUM: pidfile removed.
+VACUUM: unix socket /home/shun/work/MovieDiary/mysite.sock removed.
+*** Starting uWSGI 2.0.17.1 (64bit) on [Wed Aug  8 12:03:55 2018] ***
+compiled with version: 7.3.0 on 08 August 2018 00:56:19
+os: Linux-4.15.0-30-generic #32-Ubuntu SMP Thu Jul 26 17:42:43 UTC 2018
+nodename: shun-VirtualBox
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /home/shun/work/MovieDiary
+writing pidfile to uwsgi.pid
+detected binary path: /home/shun/work/pyenv/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+chdir() to /home/shun/work/MovieDiary
+your processes number limit is 7371
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /home/shun/work/MovieDiary/mysite.sock fd 3
+Python version: 3.6.5 (default, Apr  1 2018, 05:46:30)  [GCC 7.3.0]
+Python main interpreter initialized at 0x55f167f52ae0
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 583408 bytes (569 KB) for 12 cores
+*** Operational MODE: preforking+threaded ***
+WSGI app 0 (mountpoint='') ready in 3 seconds on interpreter 0x55f167f52ae0 pid: 2363 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 2363)
+spawned uWSGI worker 1 (pid: 2371, cores: 2)
+spawned uWSGI worker 2 (pid: 2372, cores: 2)
+spawned uWSGI worker 3 (pid: 2373, cores: 2)
+spawned uWSGI worker 4 (pid: 2374, cores: 2)
+spawned uWSGI worker 5 (pid: 2379, cores: 2)
+spawned uWSGI worker 6 (pid: 2380, cores: 2)
+[pid: 2379|app: 0|req: 1/1] 127.0.0.1 () {44 vars in 736 bytes} [Wed Aug  8 12:04:10 2018] GET / => generated 3603 bytes in 1702 msecs (HTTP/1.1 200) 5 headers in 278 bytes (1 switches on core 0)
+SIGINT/SIGQUIT received...killing workers...
+*** Starting uWSGI 2.0.17.1 (64bit) on [Wed Aug  8 12:04:40 2018] ***
+compiled with version: 7.3.0 on 08 August 2018 00:56:19
+os: Linux-4.15.0-30-generic #32-Ubuntu SMP Thu Jul 26 17:42:43 UTC 2018
+nodename: shun-VirtualBox
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /home/shun/work/MovieDiary
+writing pidfile to uwsgi.pid
+detected binary path: /home/shun/work/pyenv/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+chdir() to /home/shun/work/MovieDiary
+your processes number limit is 7371
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /home/shun/work/MovieDiary/mysite.sock fd 3
+Python version: 3.6.5 (default, Apr  1 2018, 05:46:30)  [GCC 7.3.0]
+Python main interpreter initialized at 0x55a5d7fd0ae0
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 583408 bytes (569 KB) for 12 cores
+*** Operational MODE: preforking+threaded ***
+worker 1 buried after 5 seconds
+worker 2 buried after 5 seconds
+worker 3 buried after 5 seconds
+worker 4 buried after 5 seconds
+worker 5 buried after 5 seconds
+worker 6 buried after 5 seconds
+goodbye to uWSGI.
+VACUUM: pidfile removed.
+VACUUM WARNING: unix socket /home/shun/work/MovieDiary/mysite.sock changed inode. Skip removal
+WSGI app 0 (mountpoint='') ready in 5 seconds on interpreter 0x55a5d7fd0ae0 pid: 2396 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 2396)
+spawned uWSGI worker 1 (pid: 2404, cores: 2)
+spawned uWSGI worker 2 (pid: 2405, cores: 2)
+spawned uWSGI worker 3 (pid: 2407, cores: 2)
+spawned uWSGI worker 4 (pid: 2408, cores: 2)
+spawned uWSGI worker 5 (pid: 2410, cores: 2)
+spawned uWSGI worker 6 (pid: 2414, cores: 2)
+[pid: 2414|app: 0|req: 1/1] 127.0.0.1 () {44 vars in 736 bytes} [Wed Aug  8 12:04:49 2018] GET / => generated 3603 bytes in 1944 msecs (HTTP/1.1 200) 5 headers in 278 bytes (1 switches on core 0)
+[pid: 2414|app: 0|req: 2/2] 127.0.0.1 () {44 vars in 736 bytes} [Wed Aug  8 12:08:32 2018] GET / => generated 3603 bytes in 49 msecs (HTTP/1.1 200) 5 headers in 278 bytes (1 switches on core 1)
