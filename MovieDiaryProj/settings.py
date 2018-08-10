@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -23,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'b*ywn5enft=bq7-3d8x*u9bpy**dex*)*=gfaad1nxx0vx85%u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'wangyushun.pythonanywhere.com',
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
     'comments',
     'blog',
     'users',
+    'djcelery',
 ]
 
 MIDDLEWARE = [
@@ -89,19 +91,19 @@ WSGI_APPLICATION = 'MovieDiaryProj.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    },
-    #自己调试用
     # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',   # 数据库引擎
-    #     'NAME': 'mydata',       # 你要存储数据的库名，事先要创建之
-    #     'USER': 'root',         # 数据库用户名
-    #     'PASSWORD': 'shun',     # 密码
-    #     'HOST': 'localhost',    # 主机
-    #     'PORT': '3306',         # 数据库使用的端口
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     # },
+    #自己调试用
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',   # 数据库引擎
+        'NAME': 'mydata',       # 你要存储数据的库名，事先要创建之
+        'USER': 'root',         # 数据库用户名
+        'PASSWORD': 'shun',     # 密码
+        'HOST': 'localhost',    # 主机
+        'PORT': '3306',         # 数据库使用的端口
+    },
     # PythonAnywhere上mysql配置
     # 'default' : { 
     #     'ENGINE' : 'django.db.backends.mysql',
@@ -234,3 +236,23 @@ EMAIL_USE_TLS = True
 
 # @login_required 装饰器发现用户未登录时重定向的url
 LOGIN_URL = '/user/signin/'
+
+# 配置celery
+import djcelery
+djcelery.setup_loader()
+# 传递消息时使用的redis 的ip 端口 数据库名
+BROKER_URL = 'redis://127.0.0.1:6379/0'
+#传递消息时使用django
+# BROKER_URL = 'django://'
+CELERY_TIMEZONE='Asia/Shanghai'  #与TIME_ZONE应该一致
+# CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'# 定时任务调度器
+
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+# CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/1'
+CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'
+# CELERY_RESULT_BACKEND = 'django-db'
+# CELERYD_MAX_TASKS_PER_CHILD = 3 #  每个worker最多执行3个任务就会被销毁，可防止内存泄露
+
+

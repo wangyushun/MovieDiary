@@ -1,5 +1,5 @@
-import string
 from random import sample
+import string
 
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
@@ -7,9 +7,9 @@ from django.urls import reverse
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required 
 from django.contrib.auth.models import User
-from django.core.mail import send_mail
 
 from . import forms, models
+from .tasks import send_code_by_email
 
 # Create your views here.
 def sign_in(request):
@@ -106,23 +106,17 @@ def send_verify_code(request):
         data['statusText'] = '400 Bad Request,email is empty'
     else:
         code = ''.join(sample(string.ascii_letters + string.digits, 4))
-        # 发送邮件
-        ret = send_mail(
-            subject='电影日记', #邮件标题
-            message='验证码：{code}'.format(code=code),#邮件内容
-            from_email='869588058@qq.com', #发件方
-            recipient_list=[email], #收件方
-            fail_silently=False,
-        )
-        if ret == 0:
-            data['statusCode'] = 500
-            data['statusText'] = '500 Send email faild'
-        else:
-            request.session[email] = code #以邮箱做key保存验证码，以防止提交更改时邮箱不一致
-            # request.session.set_expiry(60)#60s后失效
-            data['statusCode'] = 200
-            data['statusText'] = '200 OK'
-            data['code'] = code
+        result = send_code_by_email.delay(email=email, code=code)#celery 异步发送邮件
+        # ret = result.get()
+        # if ret == 0:
+        #     data['statusCode'] = 500
+        #     data['statusText'] = '500 Send email faild'
+        # else:
+        request.session[email] = code #以邮箱做key保存验证码，以防止提交更改时邮箱不一致
+        # request.session.set_expiry(60)#60s后失效
+        data['statusCode'] = 200
+        data['statusText'] = '200 OK'
+        data['code'] = code
     return JsonResponse(data)
 
 
