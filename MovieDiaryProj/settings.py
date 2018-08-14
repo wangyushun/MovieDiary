@@ -89,10 +89,10 @@ WSGI_APPLICATION = 'MovieDiaryProj.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    },
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    # },
     #自己调试用
     # 'default': {
     #     'ENGINE': 'django.db.backends.mysql',   # 数据库引擎
@@ -103,13 +103,13 @@ DATABASES = {
     #     'PORT': '3306',         # 数据库使用的端口
     # },
     # PythonAnywhere上mysql配置
-    # 'default' : { 
-    #     'ENGINE' : 'django.db.backends.mysql',
-    #     'NAME' : 'wangyushun$mydata',
-    #     'USER' : 'wangyushun' ,
-    #     'PASSWORD' : 'wys666666' ,
-    #     'HOST' : 'wangyushun.mysql.pythonanywhere-services.com' ,
-    # }
+    'default' : { 
+        'ENGINE' : 'django.db.backends.mysql',
+        'NAME' : 'wangyushun$mydata',
+        'USER' : 'wangyushun' ,
+        'PASSWORD' : 'wys666666' ,
+        'HOST' : 'wangyushun.mysql.pythonanywhere-services.com' ,
+    }
 }
 
 
@@ -203,8 +203,32 @@ CKEDITOR_CONFIGS = {
 
 #rest_framework app settings
 REST_FRAMEWORK = {
+    #默认验证器
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication'
+    ),
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly', #默认API访问权限只读
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly', #默认API访问权限未认证只读
+    ),
+    'DEFAULT_THROTTLE_CLASSES': (
+        'rest_framework.throttling.AnonRateThrottle',#未登陆认证的用户默认访问限制
+        'rest_framework.throttling.UserRateThrottle'#登陆认证的用户默认访问限制
+    ),
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '5/minute',#未登陆认证的用户默认请求访问限制每分钟次数
+        'user': '10/minute'#登陆认证的用户默认请求访问限制每分钟次数
+    },
+    #默认渲染器
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',#json渲染
+        'rest_framework.renderers.BrowsableAPIRenderer',#浏览器直接访问时使用的渲染器，方便调试
+    ),
+    #默认解析器
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser',
+        # 'rest_framework.parsers.FormParser',
+        # 'rest_framework.parsers.MultiPartParser'
     )
 }
 
