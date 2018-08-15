@@ -34,6 +34,13 @@ class MovieAdmin(admin.ModelAdmin):
 
     movie_type_list.short_description = '类型'
 
+    #多对多字段编辑方式
+    filter_horizontal = ('movie_type', 'producer_country', 'language')
+    # 筛选器
+    list_filter = ('movie_type', 'producer_country', )  # 过滤器
+    search_fields = ('name', 'director')  # 搜索字段
+    date_hierarchy = 'release_date'  # 详细时间分层筛选
+
 
 
 class MovieLinesAdmin(admin.ModelAdmin):
