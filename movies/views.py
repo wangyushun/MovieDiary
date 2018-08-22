@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse
 from django.core.paginator import Paginator
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
+from django.views.decorators.cache import cache_page
 
 from . import models
 from comments.forms import CommentForm
@@ -39,6 +40,7 @@ def get_movies_data(request, movies):
     context['movies'] = movies_of_page
     return context
 
+@cache_page(60*10)#缓存10分钟
 def movie(request):  
     '''
     电影列表视图
@@ -103,15 +105,12 @@ def search(request):
     return render(request, 'search.html', context)
 
 
+@cache_page(60*10)#缓存10分钟
 def tv_play(request):
     '''
     电视剧视图函数
     '''
-    type = request.GET.get('type', None)
-    if type:
-        tvplays = models.TVPlay.objects.filter(movie_type=type).all()
-    else:
-        tvplays = models.TVPlay.objects.all()
+    tvplays = models.TVPlay.objects.all()
     context = get_movies_data(request, tvplays)
     context['movie_type'] = models.MovieType.objects.all()
     context['country'] = models.Country.objects.all()

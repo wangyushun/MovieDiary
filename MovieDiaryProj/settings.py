@@ -258,3 +258,11 @@ EMAIL_USE_TLS = True
 
 # @login_required 装饰器发现用户未登录时重定向的url
 LOGIN_URL = '/user/signin/'
+
+#Django缓存设置
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        # 'LOCATION': '127.0.0.1:11211',
+    }
+}
