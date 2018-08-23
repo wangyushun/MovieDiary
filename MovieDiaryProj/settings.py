@@ -49,6 +49,9 @@ INSTALLED_APPS = [
     'comments',
     'blog',
     'users',
+    'xadmin',
+    'crispy_forms',
+    'reversion',#添加(可选)
 ]
 
 MIDDLEWARE = [
@@ -103,7 +106,7 @@ DATABASES = {
     #     'PORT': '3306',         # 数据库使用的端口
     # },
     # PythonAnywhere上mysql配置
-    'default' : { 
+    'default' : {
         'ENGINE' : 'django.db.backends.mysql',
         'NAME' : 'wangyushun$mydata',
         'USER' : 'wangyushun' ,

@@ -50,6 +50,7 @@
                             <li><a href="{% url 'userinfo' %}">个人资料</a></li>
                             {% if user.is_staff or user.is_superuser %}
                                 <li><a href="{% url 'admin:index' %}">后台管理</a></li>
+                                <li><a href="{% url 'xadmin:index' %}">X后台管理</a></li>
                             {% endif %}
                             <li role="separator" class="divider"></li>
                             <li><a href="{% url 'signout' %}">注销</a></li>

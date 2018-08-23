@@ -9,24 +9,12 @@ from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
 
 # Create your models here.
-class MediaType():
-    '''
-    媒体种类
-    '''
-    TYPE_MOVIE = 0
-    TYPE_TV = 1
-
-    MEDIA_TYPE_CHOICES = (
-        (TYPE_MOVIE, '电影'),
-        (TYPE_TV, '电视剧'),
-    )
-
 
 class MovieType(models.Model):
     '''
     电影类型
     '''
-    name = models.CharField(max_length=25)
+    name = models.CharField(max_length=25, verbose_name='电影类型名字')
 
     class Meta:
         verbose_name = '电影类型'
@@ -39,7 +27,7 @@ class Language(models.Model):
     '''
     语言
     '''
-    name = models.CharField(max_length=25)
+    name = models.CharField(max_length=25, verbose_name='语言名字')
 
     class Meta:
         verbose_name = '语言'
@@ -52,7 +40,7 @@ class Country(models.Model):
     '''
     地区国家
     '''
-    name = models.CharField(max_length=25)
+    name = models.CharField(max_length=25, verbose_name='国家/地区名字')
 
     class Meta:
         verbose_name = '国家/地区'
@@ -63,15 +51,15 @@ class Country(models.Model):
 
 
 class Movie(models.Model):
-    poster = models.ImageField(verbose_name='海报', upload_to='poster', default='', null=True)#海报
+    poster = models.ImageField(verbose_name='海报', upload_to='poster', blank=True, default='', null=True)#海报
     poster_thumbnail = ImageSpecField(source='poster',
                                       processors=[ResizeToFill(200, 300)],
                                       format='JPEG',
                                       options={'quality': 60})
     name = models.CharField(verbose_name='名字', max_length=25)#电影名
-    director = models.CharField(verbose_name='导演', max_length=25, default='不详')#导演
-    scriptwriter = models.CharField(verbose_name='编剧', max_length=50, default='不详')
-    actor = models.CharField(verbose_name='主演', max_length=50, default='')#演员
+    director = models.CharField(verbose_name='导演', max_length=50, default='不详')#导演
+    scriptwriter = models.CharField(verbose_name='编剧', max_length=100, default='不详')
+    actor = models.CharField(verbose_name='主演', max_length=100, default='')#演员
     movie_type = models.ManyToManyField(to='MovieType', verbose_name='类型', related_name='movie_type')#电影类型
     producer_country = models.ManyToManyField(to='Country', verbose_name='制片国家', related_name='producer_country')#制片国家
     language = models.ManyToManyField(to='Language', verbose_name='语言', related_name='language')#语言
@@ -82,6 +70,7 @@ class Movie(models.Model):
     grade = models.DecimalField(verbose_name='评分', max_digits=3, decimal_places=1, 
                                 validators=[validators.MaxValueValidator(10.0), validators.MinValueValidator(0.0)],
                                 default=0)#评分
+    trailer_link = models.CharField(verbose_name='预告片连接', max_length=250, blank=True, default='')
     synopsis = RichTextUploadingField(verbose_name='剧情简介', default='')#剧情简介
     create_datetime = models.DateTimeField(verbose_name='创建日期', auto_now_add=True)#日记创建日期
     resource = RichTextUploadingField(verbose_name='资源', blank=True, default='')

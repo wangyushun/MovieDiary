@@ -8,7 +8,7 @@ class UserProfile(models.Model):
     nickname = models.CharField(max_length=20, default='', verbose_name='昵称')
 
     def __str__(self):
-    	return '<UserProfile:{0}>'.format(self.nickname)
+        return '<UserProfile:{0}>'.format(self.nickname)
 
     class Meta:
         verbose_name_plural = '用户扩展'

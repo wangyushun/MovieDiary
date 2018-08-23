@@ -67,6 +67,16 @@
     </div>
     <div class="row">
         <div class="col-xs-12">
+            <span class="bg-info"><strong>预告片</strong></span>
+            {% if movie.trailer_link %}
+                <a href="{{ movie.trailer_link }}">{{ movie.name }} 预告片</a>
+            {% else %}
+                <p>暂无资源</p>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
             <span class="bg-info"><strong>剧情简介</strong></span>
             <div class="movie-synopsis">{{ movie.synopsis | safe }}</div>
         </div>
